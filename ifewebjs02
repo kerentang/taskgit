@@ -1,4 +1,4 @@
-<html>
+ <html>
   <head>
     <meta charset="utf-8">
     <title>IFE JavaScript Task 01</title>
@@ -7,9 +7,6 @@
 
   <h3>污染城市列表</h3>
   <ul id="aqi-list">
-<!--   
-    <li>第一名：福州（样例），10</li>
-      <li>第二名：福州（样例），10</li> -->
   </ul>
 <script type="text/javascript">
 
@@ -29,31 +26,30 @@ var c = [
   遍历读取aqiData中各个城市的数据
   将空气质量指数大于60的城市显示到aqi-list的列表中
   */
- //数组里含有对象的排序函数
- function mysort(proname){
+ //二维数组的排序函数
+ function mysort(){
    return function(a,b){
-    var val1=a[proname];
-    var val2=b[proname];
-    return val2-val1;
-   }
- }
- var i,j,lists;
- var adnew=[];
+     return b[1]-a[1]
+ }};
+ //将数组c先进行排序
+ c.sort(mysort());
+ var i,j;
+ var newc;
  var ulid=document.getElementById('aqi-list');
- //将所有大于60以对象的形式放进一个新数组里
-for(i=0;i<aqiData.length;i++){
-  if(aqiData[i][1]>60){
-   adnew.push({"city":aqiData[i][0],"num":aqiData[i][1]});
+ //截取数组c里大于60的push到新数组里
+for(i=0;i<c.length;i++){
+  if(c[i][1]>60 && c[i+1][1]<60){
+     newc=c.slice(0,i+1);
   };
 };
-//给新数组进行排序
-var adnew1=adnew.sort(mysort("num"));
 //循环添加列表
-  for(j=0,j<adnew1.length;j++){
-   lists="<li>第"+j+1+"名：" + adnew1[j]["city"] + ", " + adnew1[j]["num"];
-   lists=lists+lists;
+  var lists='';
+   var uls='';
+  for(j=0;j<newc.length;j++){
+   lists="<li>第"+(j+1)+"名：" + newc[j][0] + ", " + newc[j][1]+"</li>";
+   uls=uls+lists;
   };
-  ulid.innerHTML=lists;
+  ulid.innerHTML=uls;
 })();
 
 </script>
