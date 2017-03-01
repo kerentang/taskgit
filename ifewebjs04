@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础js练习一</title>
+</head>
+<body>
+	<div id="input-num">
+		<input type="text" id="input-txt">
+		<p id="btn">
+		<button class="btn" id="left-in">左侧入</button>
+		<button class="btn" id="right-in">右侧入</button>
+		<button class="btn" id="left-out">左侧出</button>
+		<button class="btn" id="right-out">右侧出</button>
+		</p>
+	</div>
+	<div id="show-num">
+	    <!-- 在这里添加div -->
+	</div>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    #input-num,#show-num{
+	    	float: left;
+	    	border: 1px solid #d00;
+	    	margin: 20px;
+	    	padding: 10px;
+	    }
+	    #show-num{
+	    	width:60%;
+	    	height:auto;
+	    }
+		#input-txt{
+			height:30px;
+			width:95%;
+			margin:10px auto;
+			padding-left: 2px;
+			border-radius: 5px;
+			border:1px solid #00d;
+		}
+        div p{
+			width:100%;
+			height:30px;
+			margin:5px auto;
+        }
+        p .btn{
+        	border:1px solid #00d;
+        	background-color: #fff;
+        	border-radius: 3px;
+        }
+        #show-num div{
+        	height: 30px;
+        	width: 30px;
+            margin: 5px;
+            float: left;
+            text-align: center;
+            background-color: #0f0;
+        }
+	</style>
+	<script type="text/javascript">
+		var input_txt=document.getElementById('input-txt');
+		var btn_list=document.getElementsByTagName('button');
+        var divbox=document.getElementById('show-num');
+        var patt=/\w+/ig;
+        //获取输入框里的内容
+        /*不一定要封装函数，因为是即时数据无须存储function getdata(){
+           var data=[];
+           data.push(input_txt.value);
+           input_txt.value='';
+        }*/
+
+        //向show-num里添加div标签，将data里的内容放进去
+function creatediv(){
+   var odiv=document.createElement('div');
+   if(input_txt.value!==null && patt.test(input_txt.value)){
+     odiv.innerHTML=input_txt.value;
+   }
+   else{alert("请填写内容！")};
+}
+
+//获取不同id的btn,处理添加的div;先获取左边的，再看看如何封装函数
+var btnid1=document.getElementById('left-in');
+var btnid2=document.getElementById('right-in');
+var btnid3=document.getElementById('left-out');
+var btnid4=document.getElementById('right-out');
+//将各个按钮及相关操作动作放入对象里，用[]来访问
+var btns={
+	btnid1:function adddivleftin(){},
+	btnid2:function adddivrightin(){},
+	btnid3:function deledivleftout(){},
+	btnid4:function deledivrightout(){}
+}
+
+//处理函数
+function btnHandle() {
+ 
+}
+
+
+
+	</script>
+</body>
+</html>
