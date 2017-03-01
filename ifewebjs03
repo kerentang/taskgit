@@ -33,18 +33,23 @@
  * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
  * 返回一个数组，格式见函数中示例
  */
-   var uls=document.getElementById('source');
-   var lis=uls.childNodes;
+    var uls=document.getElementById('source');
+    var lis=uls.getElementsByTagName('li');
+    var obutton=document.getElementById('sort-btn');
+    var render_data=document.getElementById('resort');
 function getData() {
   /*
   coding here
   */
-    var i;
+   var i;
    var data=[];
-
+   //push成二维数组；
    for(i=0;i<lis.length;i++){
-      var bs=lis[i].chileNodes;
-      data.push([lis[i].innerHTML.slice(0,2),bs.innerHTML]);
+      var bs=lis[i].getElementsByTagName('b')[0];
+      var datalin=[];
+      datalin[0]=lis[i].innerHTML.slice(0,2);
+      datalin[1]=parseInt(bs.innerHTML);
+      data.push(datalin);
    }
 
   /*
@@ -64,10 +69,10 @@ function getData() {
  * 按空气质量对data进行从小到大的排序
  * 返回一个排序后的数组
  */
-function sortAqiData(data) {
-   data.sort(function(a,b){
+function sortAqiData() {
+   return function(a,b){
      return b[1]-a[1];
-   })
+   }
 }
 
 /**
@@ -76,29 +81,26 @@ function sortAqiData(data) {
  * 格式见ul中的注释的部分
  */
 function render(data) {
-  var num=['一','二','三','四','五','六','七']
+  var num=['一','二','三','四','五','六','七'];
   var data_len=data.length;
-  var render_data=document.getElementById('resort');
+  var uls='';
   for(var j=0;j<data_len;j++){
      var lists='<li>'+'第'+num[j]+'名：'+data[j][0]+'空气质量：'+'<b>'+data[j][1]+'</b></li>';
-     lists=lists+lists;
+     uls=uls+lists;
   }
- render_data.innerHTML=lists;
+ render_data.innerHTML=uls;
 }
 
 function btnHandle() {
   var aqiData = getData();
-  aqiData = sortAqiData(aqiData);
+  aqiData.sort(sortAqiData());
   render(aqiData);
 }
 
 function init() {
 
   // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-  var obutton=document.getElementById('sort-btn');
-  obutton.onclick=function(){
-    btnHandle();
-  }
+  obutton.addEventListener('click',btnHandle);
 }
 
 init();
