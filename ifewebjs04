@@ -15,7 +15,11 @@
 		</p>
 	</div>
 	<div id="show-num">
-	    <!-- 在这里添加div -->
+	    <ul id="show-list">
+	    	 <!-- 在这里添加ul:li,将li 的id 与数组index对应方便存储
+	    	 <li id="1"></li>
+	    	 <li id="2"></li>-->
+	    </ul>
 	</div>
 	<style>
 	    *{
@@ -50,7 +54,7 @@
         	background-color: #fff;
         	border-radius: 3px;
         }
-        #show-num div{
+        #show-num ul li{
         	height: 30px;
         	width: 30px;
             margin: 5px;
@@ -60,46 +64,67 @@
         }
 	</style>
 	<script type="text/javascript">
-		var input_txt=document.getElementById('input-txt');
-		var btn_list=document.getElementsByTagName('button');
-        var divbox=document.getElementById('show-num');
-        var patt=/\w+/ig;
-        //获取输入框里的内容
-        /*不一定要封装函数，因为是即时数据无须存储function getdata(){
-           var data=[];
-           data.push(input_txt.value);
-           input_txt.value='';
-        }*/
+	    //先获取dom节点
+	    
+		var input_txt=document.getElementById('input-txt').value;
+        var uls=document.getElementById('show-list');
+        var patt=/\d+/;
+        //添加监听事件的处理函数,处理浏览器兼容性
+        function addHandler(ele,event,func){
+            if(ele.addEventListener){
+              ele.addEventListener(event,func);
+            }
+            else if(ele.attachEvent){
+              ele.attachEvent('on'+event,func);
+            }
+        }
+        //判断输入框是否有效
+        function input_is_null(){
+            if(!patt.test(input_txt.trim()) || input_txt==''){
+               alert('请输入数字！');
+               input_txt='';
+               return true;
+            }
+            else{return false;}
+        }
+        //本来想将按钮组成一个对象，然后change_arr（）封装一下：因为有很多重复的动作，然后用call（）将按钮绑到函数的this,但是一直出错，只好先提交参考了大家的做法。
+        var li_arr=[];
 
-        //向show-num里添加div标签，将data里的内容放进去function creatediv(){   var odiv=document.createElement('div');   if(input_txt.value!==null && patt.test(input_txt.value)){     odiv.innerHTML=input_txt.value;   }   else{alert("请填写内容！")};
-
-
-//获取不同id的btn,处理添加的div;先获取左边的，再看看如何封装函数
-var btnid1=document.getElementById('left-in');
-var btnid2=document.getElementById('right-in');
-var btnid3=document.getElementById('left-out');
-var btnid4=document.getElementById('right-out');
-var divs=divbox.document.getElementsByTagName('div');
-//将各个按钮及相关操作动作放入对象里，用[]来访问
-var btns={
-	btnid1:function adddivleftin(){
-	  //从左边把div 添加到队列中，向判断一下队列是否是空值
-	  var odiv=document.createElement('div');
-	 if(divs.length==0 && input_txt.value!==null && patt.test(input_txt.value)){
-       divbox.appendChild(odiv);
-	 }
-	},
-	btnid2:function adddivrightin(){},
-	btnid3:function deledivleftout(){},
-	btnid4:function deledivrightout(){}
-}
-
-//处理函数
-function btnHandle() {
- 
-}
-
-
+        function change_arr(){
+            if(!input_is_null){
+                if(this.id='left-in'){
+                  return li_arr.unshift(input_txt);
+                }else if(this.id='right-in'){return li_arr.push(input_txt);}
+                else if(this.id='left-out'){if(li_arr.length>0){return li_arr.shift(input_txt);}
+                       else{alert('没有数据了！请先输入数字！')}}
+                else if(this.id='right-out'){if(li_arr.length>0){return li_arr.pop(input_txt);}
+                       else{alert('没有数据了！请先输入数字！')}}
+               }
+            input_txt='';
+            render();
+        }
+        //渲染函数来渲染数组里的值,渲染后每个数组元素都有自己的id以便触发this.click事件
+        function render(){
+            var str='',i;
+            for(i=0;i<li_arr.length;i++){
+               var oli=document.createElement('li');
+               oli.innerHTML=li_[i];
+               oli.setAttribute('index',i);
+               uls.appendChild(oli);
+            }
+        }
+        //点击任意数字则删除该数字；可利用event.target先返回触发该事件的节点
+        addHandler($('show-list'),'click',function(e){
+            var index = e.target.getAttribute('index');
+            li_arr.splice(index, 1);
+            render();
+        })
+        //监听btns的点击事件
+        var btns=document.getElementsByTagName('button');
+        for(var i=0;i<btns.length;i++){
+            addHandler(btns[i],'click',change_arr);
+            }
+        
 
 	</script>
 </body>
