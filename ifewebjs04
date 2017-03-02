@@ -71,23 +71,24 @@
            input_txt.value='';
         }*/
 
-        //向show-num里添加div标签，将data里的内容放进去
-function creatediv(){
-   var odiv=document.createElement('div');
-   if(input_txt.value!==null && patt.test(input_txt.value)){
-     odiv.innerHTML=input_txt.value;
-   }
-   else{alert("请填写内容！")};
-}
+        //向show-num里添加div标签，将data里的内容放进去function creatediv(){   var odiv=document.createElement('div');   if(input_txt.value!==null && patt.test(input_txt.value)){     odiv.innerHTML=input_txt.value;   }   else{alert("请填写内容！")};
+
 
 //获取不同id的btn,处理添加的div;先获取左边的，再看看如何封装函数
 var btnid1=document.getElementById('left-in');
 var btnid2=document.getElementById('right-in');
 var btnid3=document.getElementById('left-out');
 var btnid4=document.getElementById('right-out');
+var divs=divbox.document.getElementsByTagName('div');
 //将各个按钮及相关操作动作放入对象里，用[]来访问
 var btns={
-	btnid1:function adddivleftin(){},
+	btnid1:function adddivleftin(){
+	  //从左边把div 添加到队列中，向判断一下队列是否是空值
+	  var odiv=document.createElement('div');
+	 if(divs.length==0 && input_txt.value!==null && patt.test(input_txt.value)){
+       divbox.appendChild(odiv);
+	 }
+	},
 	btnid2:function adddivrightin(){},
 	btnid3:function deledivleftout(){},
 	btnid4:function deledivrightout(){}
