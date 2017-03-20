@@ -35,6 +35,7 @@
 	    #show-num{
 	    	width:60%;
 	    	height:auto;
+            display: block;
 	    }
 		#input-txt{
 			height:30px;
@@ -55,20 +56,26 @@
         	border-radius: 3px;
         }
         #show-num ul li{
-        	height: 30px;
-        	width: 30px;
+        	height: 20px;
+        	width: 20px;
             margin: 5px;
+            display:inline-block;
             float: left;
             text-align: center;
             background-color: #0f0;
         }
 	</style>
 	<script type="text/javascript">
-	    //先获取dom节点
-	    
+
+	    //先获取dom节点  
 		var input_txt=document.getElementById('input-txt').value;
         var uls=document.getElementById('show-list');
-        var patt=/\d+/;
+        var patt=/^\d+{1,3}$/;
+        var btns=document.getElementsByTagName('button');
+        var left_in = document.getElementById('left-in'),
+            right_in = document.getElementById('right-in'),
+            left_out = document.getElementById('left-out'),
+            right_out = document.getElementById('right-out');
         //添加监听事件的处理函数,处理浏览器兼容性
         function addHandler(ele,event,func){
             if(ele.addEventListener){
@@ -78,53 +85,73 @@
               ele.attachEvent('on'+event,func);
             }
         }
+        //设置初始值
+        function default_value(){
+          var dv=Math.round(Math.random()*100);
+          input_txt=dv;
+        }
         //判断输入框是否有效
         function input_is_null(){
             if(!patt.test(input_txt.trim()) || input_txt==''){
                alert('请输入数字！');
                input_txt='';
-               return true;
+               return false;
             }
-            else{return false;}
+            return true;
         }
-        //本来想将按钮组成一个对象，然后change_arr（）封装一下：因为有很多重复的动作，然后用call（）将按钮绑到函数的this,但是一直出错，只好先提交参考了大家的做法。
-        var li_arr=[];
+        //检查队列是否为空
+        function check_empty(){
+            if(li_arr.length==0){
+                left_out.disabled=true;
+                right_out.disabled=true;
+            }else{
+                left_out.disabled=false;
+                right_out.disabled=false;
+            }
+        }
 
-        function change_arr(){
-            if(!input_is_null){
-                if(this.id='left-in'){
-                  return li_arr.unshift(input_txt);
-                }else if(this.id='right-in'){return li_arr.push(input_txt);}
-                else if(this.id='left-out'){if(li_arr.length>0){return li_arr.shift(input_txt);}
-                       else{alert('没有数据了！请先输入数字！')}}
-                else if(this.id='right-out'){if(li_arr.length>0){return li_arr.pop(input_txt);}
-                       else{alert('没有数据了！请先输入数字！')}}
-               }
-            input_txt='';
+        //监测数组的状态
+        var li_arr=[];
+        function check_arr(){
+            if(input_is_null()){
+                if(this.id='left-in'){return li_arr.unshift(input_txt);}
+                else if(this.id='right-in'){return li_arr.push(input_txt);}
+                else if(this.id='left-out'){
+                    check_empty();
+                    return li_arr.shift(input_txt);
+                    }
+                else if(this.id='right-out'){
+                    check_empty();
+                    return li_arr.pop(input_txt);
+                    }
             render();
         }
         //渲染函数来渲染数组里的值,渲染后每个数组元素都有自己的id以便触发this.click事件
         function render(){
             var str='',i;
             for(i=0;i<li_arr.length;i++){
-               var oli=document.createElement('li');
-               oli.innerHTML=li_[i];
-               oli.setAttribute('index',i);
-               uls.appendChild(oli);
+                var oli=document.createElement('li');
+                oli.innerHTML=li_arr[i];
+                oli.setAttribute('id',i);
+                uls.appendChild(oli);
             }
         }
         //点击任意数字则删除该数字；可利用event.target先返回触发该事件的节点
-        addHandler($('show-list'),'click',function(e){
-            var index = e.target.getAttribute('index');
-            li_arr.splice(index, 1);
+        addHandler(uls,'click',function(e){
+            var target=e.target
+            if(target.nodeName=='li'){
+                var index = e.target.getAttribute('id');
+                li_arr.splice(index, 1);
+            }
             render();
         })
         //监听btns的点击事件
-        var btns=document.getElementsByTagName('button');
-        for(var i=0;i<btns.length;i++){
-            addHandler(btns[i],'click',change_arr);
+        function init(){
+            for(var i=0;i<btns.length;i++){
+            addHandler(btns[i],'click',check_arr);
             }
-        
+        }
+        init();
 
 	</script>
 </body>
