@@ -32,7 +32,7 @@
 	    		display: flex;
 	    		flex-flow:row nowrap;
 	    		justify-content: flex-start;
-	    		align-items: flex-start;
+	    		align-items: flex-end;
 	    	}
 	    	#show_li li{
 	    		width: 30px;
@@ -61,6 +61,7 @@
                     right_out=$id('right-out'),
                     left_in=$id('left-in'),
                     s_bubble=$id('bubble'),
+                    ls=oul.getElementsByTagName('li');
                     li_arr=[];
 
         //第一步：获取input_txt.value：a-检查输入合法性；b-自动输入用于测试;
@@ -91,17 +92,31 @@
                 }
 
         //第二步：将input_txt.value push 到数组li_arr里：检查数组长度;
-                //check li_arr.length{0,60}
+                //check li_arr.length{0,30} for test,需要避免一开始页面刚加载时li_arr==[]的情况使out两项失效
+                //所以增加了&& input_txt.value共同判定,后面输入时发现第一个值输入不合法时也会导致out两项一直失效又增加了check_input()的判断
                 function check_length(){
-                    if(li_arr.length>30){
-                        alert('长度超出范围，请添加或删除！');
+                    if(li_arr.length==0 && input_txt.value.trim() && check_input()){
+                        alert('没有删除项了！');
                         left_out.disabled='disabled';
                         right_out.disabled='disabled';
                         return false;}
+                    else if(li_arr.length>30){
+                        alert('超出范围，请先删除！');
+                        left_in.disabled='disabled';
+                        right_in.disabled='disabled';
+                        return false;
+                    }
+                    else{
+                        left_out.disabled=false;
+                        right_out.disabled=false;
+                        left_in.disabled=false;
+                        right_in.disabled=false;
+                        return li_arr.length;
+                    }
                 }
 
         //第三步：操作btn，改变li_arr的值和长度:1.通过id获取btn；2.增减改删btn的操作；3.4种排序的实现            
-                //排序
+                //冒泡排序
                 function sortarr(){
                     var lis=li_arr.length,i,j,temp,newarr;
                     newarr=li_arr.slice(0);
@@ -121,8 +136,8 @@
                     //对象是数组
                     var e=e || window.e,
                         target=e.target || e.srcElement;
-                        if(check_input()){
-                        var num=parseInt(input_txt.value.trim());
+                    var num=parseInt(input_txt.value.trim());
+                    if(check_input()){
                         switch (target.id) {
                             case 'left-in':
                                 li_arr.unshift(num)
@@ -141,15 +156,16 @@
                                 li_arr.pop(num)
                                 break;
                             case 'bubble':
-                                li_arr=li_arr.sort(sortarr())
+                                li_arr=sortarr(li_arr)
                                 break;
                         }
-                    }else if(target.nodeName.toLowerCase()=== 'li'){
-                        var index=target.id;
-                        alert('你删除的元素是：'+  li_arr.splice(index,1));
+                        if(target.nodeName.toLowerCase()=== 'li'){
+                            var index=target.id;
+                            alert('你删除的元素是：'+  li_arr.splice(index,1));
+                            li_arr.splice(index,1);
+                        }
                     }
-                    check_length();
-                    render(li_arr);
+                    render();
                 }
 
         //第四步：渲染数组里的数值到dom里去，将li的高度设为数组里对应的值
@@ -158,18 +174,22 @@
                     var oli=document.createElement('li');
                     var txt=document.createTextNode(myli);
                     oli.appendChild(txt);
-                    oli.style.height=myli+'px';
+                    oli.style.height=myli+12+'px';//有些数字较小，给数字留点12px的空间
                     return oli;
                 };
                 //render li_arr in ul
-                function render(li_arr){
-                    var i,j;
-                    for(i=0;i<li_arr.length;i++){
-                        j=create_li(li_arr[i]);
-                        j.setAttribute('id',i);
-                        oul.appendChild(j);
-                    }  
+                function render(){
+                    if(check_length()){
+                        var i,j,lis=li_arr.length;
+                        for(i=0;i<li_arr.length;i++){
+                            j=create_li(li_arr[i]);
+                            j.setAttribute('id',''+i);
+                            oul.appendChild(j);
+                        }
+                    } 
                 }
+                //清除渲染?
+
         //监听点击事件
                 $id('input_box').addEventListener('click',change_li_arr);
                 $id('show_txt').addEventListener('click',change_li_arr);
