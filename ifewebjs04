@@ -2,157 +2,146 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>基础js练习一</title>
+	<title>task04</title>
 </head>
 <body>
-	<div id="input-num">
-		<input type="text" id="input-txt">
-		<p id="btn">
-		<button class="btn" id="left-in">左侧入</button>
-		<button class="btn" id="right-in">右侧入</button>
-		<button class="btn" id="left-out">左侧出</button>
-		<button class="btn" id="right-out">右侧出</button>
-		</p>
-	</div>
-	<div id="show-num">
-	    <ul id="show-list">
-	    	 <!-- 在这里添加ul:li,将li 的id 与数组index对应方便存储
-	    	 <li id="1"></li>
-	    	 <li id="2"></li>-->
-	    </ul>
-	</div>
-	<style>
-	    *{
-	    	margin: 0;
-	    	padding: 0;
-	    }
-	    #input-num,#show-num{
-	    	float: left;
-	    	border: 1px solid #d00;
-	    	margin: 20px;
-	    	padding: 10px;
-	    }
-	    #show-num{
-	    	width:60%;
-	    	height:auto;
-            display: block;
-	    }
-		#input-txt{
-			height:30px;
-			width:95%;
-			margin:10px auto;
-			padding-left: 2px;
-			border-radius: 5px;
-			border:1px solid #00d;
-		}
-        div p{
-			width:100%;
-			height:30px;
-			margin:5px auto;
-        }
-        p .btn{
-        	border:1px solid #00d;
-        	background-color: #fff;
-        	border-radius: 3px;
-        }
-        #show-num ul li{
-        	height: 20px;
-        	width: 20px;
-            margin: 5px;
-            display:inline-block;
-            float: left;
-            text-align: center;
-            background-color: #0f0;
-        }
-	</style>
-	<script type="text/javascript">
+	<div id="main">
+	    <div id="input_box">
+		    <input type="text" id="input_txt"  placeholder="Number please!">
+		    <button id="left-in">left-in</button>
+		    <button id="right-in">right-in</button>
+		    <button id="left-out">left-out</button>
+		    <button id="right-out">right-out</button>
+	    </div>
+	    <div id="show_txt">
+		    <ul id="show_li">
+		        <li>1</li>
+		        <li>2</li>
+		        <li>3</li>
+		        <li>4</li>
 
-	    //先获取dom节点  
-		var input_txt=document.getElementById('input-txt').value;
-        var uls=document.getElementById('show-list');
-        var patt=/^\d+{1,3}$/;
-        var btns=document.getElementsByTagName('button');
-        var left_in = document.getElementById('left-in'),
-            right_in = document.getElementById('right-in'),
-            left_out = document.getElementById('left-out'),
-            right_out = document.getElementById('right-out');
-        //添加监听事件的处理函数,处理浏览器兼容性
-        function addHandler(ele,event,func){
-            if(ele.addEventListener){
-              ele.addEventListener(event,func);
-            }
-            else if(ele.attachEvent){
-              ele.attachEvent('on'+event,func);
-            }
-        }
-        //设置初始值
-        function default_value(){
-          var dv=Math.round(Math.random()*100);
-          input_txt=dv;
-        }
-        //判断输入框是否有效
-        function input_is_null(){
-            if(!patt.test(input_txt.trim()) || input_txt==''){
-               alert('请输入数字！');
-               input_txt='';
-               return false;
-            }
-            return true;
-        }
-        //检查队列是否为空
-        function check_empty(){
-            if(li_arr.length==0){
-                left_out.disabled=true;
-                right_out.disabled=true;
-            }else{
-                left_out.disabled=false;
-                right_out.disabled=false;
-            }
-        }
+		    	<!-- <li id="1">1</li>
+		    	<li id="2">2</li>
+		    	<li id="3">3</li> -->
+		    </ul>
+	    </div>
+	    <style type="text/css">
+	    	body{
+	    		margin:10px;
+	    		padding:10px;
+	    	}
+	    	#show_txt{
+	    		display: -webkit-flex; /* Safari */
+	    		display: flex;
+	    		flex-flow:row wrap;
+	    		justify-content: flex-start;
+	    		align-content: flex-start;
+	    	}
+	    	#show_li li{
+	    		width: 30px;
+	    		height: 30px;
+	    		line-height: 30px;
+	    		text-align: center;
+	    		margin:5px 5px;
+	    		color: #fff;
+	    		background-color: #00f;
+	    		display: inline-block;
+	    		flex: none;
+	    	}
+	    </style>
+	    <script>
+	    	
+            window.onload=function(){
 
-        //监测数组的状态
-        var li_arr=[];
-        function check_arr(){
-            if(input_is_null()){
-                if(this.id='left-in'){return li_arr.unshift(input_txt);}
-                else if(this.id='right-in'){return li_arr.push(input_txt);}
-                else if(this.id='left-out'){
-                    check_empty();
-                    return li_arr.shift(input_txt);
+                //get ele by id,注意jq的$
+                function $id(id){
+                    return document.getElementById(id);
+                }
+
+                var input_txt=$id('input_txt'),
+                    oul=$id('show_li');
+
+                //check input value is number?true:false
+                function check_input(){
+                    if(input_txt.value===''){
+                        alert('it is empty!');
+                        return false;
+                    }else if(!isNaN(parseInt(input_txt.value.trim()))){
+                        return true;
                     }
-                else if(this.id='right-out'){
-                    check_empty();
-                    return li_arr.pop(input_txt);
-                    }
-            render();
-        }
-        //渲染函数来渲染数组里的值,渲染后每个数组元素都有自己的id以便触发this.click事件
-        function render(){
-            var str='',i;
-            for(i=0;i<li_arr.length;i++){
-                var oli=document.createElement('li');
-                oli.innerHTML=li_arr[i];
-                oli.setAttribute('id',i);
-                uls.appendChild(oli);
-            }
-        }
-        //点击任意数字则删除该数字；可利用event.target先返回触发该事件的节点
-        addHandler(uls,'click',function(e){
-            var target=e.target
-            if(target.nodeName=='li'){
-                var index = e.target.getAttribute('id');
-                li_arr.splice(index, 1);
-            }
-            render();
-        })
-        //监听btns的点击事件
-        function init(){
-            for(var i=0;i<btns.length;i++){
-            addHandler(btns[i],'click',check_arr);
-            }
-        }
-        init();
+                    else{
+                        alert('input a number please!');
+                        return false;
+                    }   
+               }
 
-	</script>
+               //create li alone,return self,noting:the space is text node too.
+                function create_li(){
+                    if(check_input()){
+                        var oli=document.createElement('li');
+                        var txt=document.createTextNode(input_txt.value.trim());
+                        oli.appendChild(txt);
+                        return oli;
+                    }
+                };
+
+                //set random || user input
+                function setrandom(){
+                   return input_txt.value=Math.round(Math.random()*100);
+                }
+
+                //check uls.children.length?true:false
+                function check_uls(){
+                    var uls=oul.children.length;
+                    if(uls){
+                        $id('left-out').disabled = false;
+                        $id('right-out').disabled = false;
+                        return true;
+                    }else{
+                        $id('left-out').disabled = "disabled";
+                        $id('right-out').disabled = "disabled";
+                        return false;
+                    }
+                }
+                    
+                //handle(),注意空白节点，最好使用ele.children[i]来表示子节点||lastElementchild
+                function handle(e){
+                    var e=e || window.e,
+                        target=e.target || e.srcElement;
+                    if(target.nodeName.toLowerCase()==='button'){                        
+                        switch (target.id) {
+                        case 'left-in':
+                            oul.insertBefore(create_li(), oul.children[0])
+                            setrandom()
+                            break;
+                        case 'right-in':
+                            oul.appendChild(create_li())
+                            setrandom()
+                            break;
+                        case 'left-out':
+                            alert('你删除的元素是：'+ oul.children[0].innerHTML )
+                            oul.firstElementChild.remove()
+                            break;
+                        case 'right-out':
+                            alert('你删除的元素是：'+ oul.lastElementChild.innerHTML )
+                            oul.lastElementChild.remove()
+                            break;
+                        }
+                    }else if (target.nodeName.toLowerCase()=== 'li') {
+            	        // click to delete self
+            	        alert('你删除的元素是：'+ target.innerHTML )
+                        target.remove()
+                    }
+                    check_uls();
+                }
+                //bind click and ele
+               $id('input_box').addEventListener('click',handle);
+               $id('show_txt').addEventListener('click',handle);
+
+            }
+
+
+	    </script>
+	</div>
 </body>
 </html>
