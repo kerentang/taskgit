@@ -55,6 +55,7 @@
                 //获取各dom节点
                 var input_txt=$id('input_txt'),
                     oul=$id('show_li'),
+                    show_txt=$id('shoe_txt'),
                     left_in=$id('left-in'),
                     right_in=$id('right-in'),
                     left_out=$id('left-out'),
@@ -95,10 +96,11 @@
                 //check li_arr.length{0,30} for test,需要避免一开始页面刚加载时li_arr==[]的情况使out两项失效
                 //所以增加了&& input_txt.value共同判定,后面输入时发现第一个值输入不合法时也会导致out两项一直失效又增加了check_input()的判断
                 function check_length(){
-                    if(li_arr.length==0 && input_txt.value.trim() && check_input()){
+                    if(li_arr.length==0 && input_txt.value.trim()){
                         alert('没有删除项了！');
                         left_out.disabled='disabled';
                         right_out.disabled='disabled';
+                        oul.innerHTML='';
                         return false;}
                     else if(li_arr.length>30){
                         alert('超出范围，请先删除！');
@@ -177,18 +179,22 @@
                     oli.style.height=myli+12+'px';//有些数字较小，给数字留点12px的空间
                     return oli;
                 };
-                //render li_arr in ul
+                //render li_arr in ul--一开始这里渲染有问题，页面渲染后总是保留之前渲染的结果？单个函数测试没有问题，
+                //后来oul累计了，所以每次渲染前oul.innerHTML=''
+                var str;
                 function render(){
                     if(check_length()){
                         var i,j,lis=li_arr.length;
+                        oul.innerHTML='';
                         for(i=0;i<li_arr.length;i++){
                             j=create_li(li_arr[i]);
                             j.setAttribute('id',''+i);
                             oul.appendChild(j);
                         }
-                    } 
+                    }else{
+                        return false;
+                    }
                 }
-                //清除渲染?
 
         //监听点击事件
                 $id('input_box').addEventListener('click',change_li_arr);
