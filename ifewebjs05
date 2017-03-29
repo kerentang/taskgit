@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>task04</title>
+    <meta charset="UTF-8">
+    <title>task04</title>
 </head>
 <body>
-	<div id="main">
-	    <div id="input_box">
-		    <input type="text" id="input_txt"  placeholder="Number please!">
-		    <button id="left-in">left-in</button>
-		    <button id="right-in">right-in</button>
-		    <button id="left-out">left-out</button>
-		    <button id="right-out">right-out</button>
-            <button id="bubble">sort</button>
-	    </div>
-	    <div id="show_txt">
-		    <ul id="show_li">
-<!-- 		    <li id="1">1</li>
-		        <li id="2">2</li>
-		        <li id="3">3</li>
-		        <li id="4">4</li> -->
-		    </ul>
-	    </div>
-	    <style type="text/css">
-	    	body{
-	    		margin:10px;
-	    		padding:10px;
-	    	}
-	    	#show_txt{
-	    		display: -webkit-flex; /* Safari */
-	    		display: flex;
-	    		flex-flow:row nowrap;
-	    		justify-content: flex-start;
-	    		align-items: flex-end;
-	    	}
-	    	#show_li li{
-	    		width: 30px;
-	    		line-height: 30px;
-	    		text-align: center;
-	    		margin:5px 5px;
-	    		color: #fff;
-	    		background-color: #f00;
-	    		display: inline-block;
-	    		flex: none;
-	    	}
-	    </style>
-	    <script>
-	    	window.onload=function(){
+    <div id="main">
+        <div id="input_box">
+            <input type="text" id="input_txt"  placeholder="Number please!">
+            <button id="left-in">left-in</button>
+            <button id="right-in">right-in</button>
+            <button id="left-out">left-out</button>
+            <button id="right-out">right-out</button>
+            <button id="cleararr">clear</button>
+            <button id="bubble">bubble</button>
+        </div>
+        <div id="show_txt">
+            <ul id="show_li">
+<!--            <li id="1">1</li>
+                <li id="2">2</li>
+                <li id="3">3</li>
+                <li id="4">4</li> -->
+            </ul>
+        </div>
+        <style type="text/css">
+            body{
+                margin:10px;
+                padding:10px;
+            }
+            #show_txt,#show_li{
+                display: -webkit-flex; /* Safari */
+                display: flex;
+                height: auto;
+                flex-flow:row nowrap;
+                justify-content: flex-start;
+                align-items: flex-end;
+            }
+            #show_txt{
+                border: 1px solid #ddd;
+                margin-top: 10px;
+            }
+            #show_li li{
+                width: 30px;
+                line-height: 30px;
+                text-align: center;
+                margin:5px 5px;
+                color: #00f;
+                background-color: #fff;
+                display: inline-block;
+                flex: none;
+                border: 1px solid #f00;
+                border-radius: 2px;
+            }
+        </style>
+        <script>
 
                //get ele by id,注意jq的$
                 function $id(id){
@@ -89,7 +96,7 @@
 
                 //set random || user input
                 function setrandom(){
-                   return input_txt.value=Math.round(11+Math.random()*89);
+                   return input_txt.value=Math.round(11+Math.random()*88);
                 }
 
         //第二步：将input_txt.value push 到数组li_arr里：检查数组长度;
@@ -134,6 +141,7 @@
                     return newarr;
                 }
 
+
                 function change_li_arr(e){
                     //对象是数组
                     var e=e || window.e,
@@ -156,6 +164,9 @@
                             case 'right-out':
                                 alert('你删除的元素是：'+ li_arr[li_arr.length-1])
                                 li_arr.pop(num)
+                                break;
+                            case 'cleararr':
+                                li_arr=[]
                                 break;
                             case 'bubble':
                                 li_arr=sortarr(li_arr)
@@ -197,10 +208,12 @@
                 }
 
         //监听点击事件
+        window.onload=function(){
+                $id('input_txt').focus();
                 $id('input_box').addEventListener('click',change_li_arr);
                 $id('show_txt').addEventListener('click',change_li_arr);
             }
-	    </script>
-	</div>
+        </script>
+    </div>
 </body>
 </html>
