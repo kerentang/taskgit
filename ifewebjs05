@@ -14,6 +14,7 @@
             <button id="right-out">right-out</button>
             <button id="cleararr">clear</button>
             <button id="bubble">bubble</button>
+            <button id="quick-sort">quick</button>
         </div>
         <div id="show_txt">
             <ul id="show_li">
@@ -140,7 +141,22 @@
                     }
                     return newarr;
                 }
-
+                
+                //快排-选定一个中间值作为比较对象，比中间小放在左边，比中间大放在右边，重复操作用递归，若数组较大需要防止栈溢出，使用尾递归优化；
+                function quicksort(arr){
+                    var i,left=[],right=[];
+                    if(arr.length<=1){return arr;};//优先判断长度，不能在splice后面
+                    pivot_i=Math.floor(arr.length/2.0);
+                    pivot_v=arr.splice(pivot_i,1)[0];//注意此时的arr的length已经改变了，所以后面的length要重新获取
+                    for(i=0;i<arr.length;i++){
+                        if(arr[i]<pivot_v){
+                            left.push(arr[i]);
+                        }
+                        else if(arr[i]>pivot_v){right.push(arr[i])};
+                    }
+                    
+                    return quicksort(left).concat([pivot_v],quicksort(right));//注意pivot_v已经是一个数字而不是数组,concat时要转为数组
+                };
 
                 function change_li_arr(e){
                     //对象是数组
@@ -169,7 +185,10 @@
                                 li_arr=[]
                                 break;
                             case 'bubble':
-                                li_arr=sortarr(li_arr)
+                                li_arr=sortarr()
+                                break;
+                            case 'quick-sort':
+                                li_arr=quicksort(li_arr)
                                 break;
                         }
                         if(target.nodeName.toLowerCase()=== 'li'){
@@ -187,7 +206,7 @@
                     var oli=document.createElement('li');
                     var txt=document.createTextNode(myli);
                     oli.appendChild(txt);
-                    oli.style.height=myli+12+'px';//有些数字较小，给数字留点12px的空间
+                    oli.style.height=myli+12+'px';//有些数字较小，给数字留12px的空间
                     return oli;
                 };
                 //render li_arr in ul--一开始这里渲染有问题，页面渲染后总是保留之前渲染的结果？单个函数测试没有问题，
