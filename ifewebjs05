@@ -13,8 +13,12 @@
             <button id="left-out">left-out</button>
             <button id="right-out">right-out</button>
             <button id="cleararr">clear</button>
+        </div>
+        <div id="sort">
             <button id="bubble">bubble</button>
             <button id="quick-sort">quick</button>
+            <button id="insert">insert</button>
+            <button id="merge">merge</button>
         </div>
         <div id="show_txt">
             <ul id="show_li">
@@ -36,6 +40,9 @@
                 flex-flow:row nowrap;
                 justify-content: flex-start;
                 align-items: flex-end;
+            }
+            #sort{
+                margin-top: 10px;
             }
             #show_txt{
                 border: 1px solid #ddd;
@@ -143,27 +150,65 @@
                 }
                 
                 //快排-选定一个中间值作为比较对象，比中间小放在左边，比中间大放在右边，重复操作用递归，若数组较大需要防止栈溢出，使用尾递归优化；
-                function quicksort(arr){
-                    var i,left=[],right=[];
-                    if(arr.length<=1){return arr;};//优先判断长度，不能在splice后面
-                    pivot_i=Math.floor(arr.length/2.0);
-                    pivot_v=arr.splice(pivot_i,1)[0];//注意此时的arr的length已经改变了，所以后面的length要重新获取
-                    for(i=0;i<arr.length;i++){
-                        if(arr[i]<pivot_v){
-                            left.push(arr[i]);
-                        }
-                        else if(arr[i]>pivot_v){right.push(arr[i])};
-                    }
-                    
-                    return quicksort(left).concat([pivot_v],quicksort(right));//注意pivot_v已经是一个数字而不是数组,concat时要转为数组
-                };
+                //使用递归快排时有问题，单个函数测试没有问题，渲染到ul中每点击一次就会少一个。。。。。
+                //解决方法：冒泡排序没有问题因为返回的是排好的数组，所以重写一个快排不使用递归，返回整个数组
+                //以下是递归快排：
+            //    function quicksort(arr){
+            //        var i,left=[],right=[];
+            //        if(arr.length<=1){return arr;};//优先判断长度，不能在splice后面
+            //        pivot_i=Math.floor(arr.length/2.0);
+            //        pivot_v=arr.splice(pivot_i,1)[0];//注意此时的arr的length已经改变了，所以后面的length要重新获取
+            //        for(i=0;i<arr.length;i++){
+            //            if(arr[i]<pivot_v){
+            //                left.push(arr[i]);
+            //            }
+            //            else if(arr[i]>pivot_v){right.push(arr[i]);};
+            //        }
+            //        
+            //        return quicksort(left).concat([pivot_v],quicksort(right));//注意pivot_v已经是一个数字而不是数组,concat时要转为数组
+            //    };
 
+                //不使用递归时的快排,循环快排-参考了网上的写法：位运算右移动
+                function qsort_with_loop(arr) {
+                    var stack = [];//记录arr的下标位置，先取出偶数位比较，再取出奇数位
+                    stack.push([0, arr.length - 1]);
+
+                    while (stack.length) {
+                        var _ = stack.pop();
+                        var i = l = _[0];
+                        var j = r = _[1];
+                        var mid = arr[(i + j) >> 1];//右位移运算1位是取半写法,想当于Math.floor((i+j)/2);
+
+                        do {
+                            while (arr[i] < mid) ++i;
+                            while (arr[j] > mid) --j;
+                            if (i <= j) {
+                                var t = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = t;
+                                ++i;
+                                --j;
+                            }
+                      } while (i <= j);
+
+                        if (i < r){stack.push([i, r]);};
+                        if (l < j){stack.push([l, j]);};
+                    }
+                    return arr;
+                  }
+ 
+                //插入排序:
+                
+                //归并排序
+                
+                //增减改删按钮操作
                 function change_li_arr(e){
-                    //对象是数组
+                
                     var e=e || window.e,
                         target=e.target || e.srcElement;
                     var num=parseInt(input_txt.value.trim());
                     if(check_input()){
+
                         switch (target.id) {
                             case 'left-in':
                                 li_arr.unshift(num)
@@ -184,12 +229,6 @@
                             case 'cleararr':
                                 li_arr=[]
                                 break;
-                            case 'bubble':
-                                li_arr=sortarr()
-                                break;
-                            case 'quick-sort':
-                                li_arr=quicksort(li_arr)
-                                break;
                         }
                         if(target.nodeName.toLowerCase()=== 'li'){
                             var index=target.id;
@@ -197,7 +236,30 @@
                             li_arr.splice(index,1);
                         }
                     }
-                    render();
+                    render(li_arr);
+                }
+                //排序操作
+                function mysort(e){
+                     var e=e || window.e,
+                        target=e.target || e.srcElement;
+                    var num=parseInt(input_txt.value.trim());
+                    if(check_input()){
+                        switch (target.id) {
+                            case 'bubble':
+                                li_arr=sortarr()
+                                break;
+                            case 'quick-sort':
+                                li_arr=qsort_with_loop(li_arr)
+                                break;
+                            case 'insert':
+                                li_arr=myinsert()
+                                break;
+                            case 'merge':
+                                li_arr=mymerge()
+                                break;
+                        }
+                    }
+                    render(li_arr);
                 }
 
         //第四步：渲染数组里的数值到dom里去，将li的高度设为数组里对应的值
@@ -210,9 +272,10 @@
                     return oli;
                 };
                 //render li_arr in ul--一开始这里渲染有问题，页面渲染后总是保留之前渲染的结果？单个函数测试没有问题，
-                //后来oul累计了，所以每次渲染前oul.innerHTML=''
+                //后来oul发现累计了，所以每次渲染前oul.innerHTML=''
                 var str;
-                function render(){
+                function render(li_arr){
+
                     if(check_length()){
                         var i,j,lis=li_arr.length;
                         oul.innerHTML='';
@@ -229,6 +292,7 @@
         //监听点击事件
         window.onload=function(){
                 $id('input_txt').focus();
+                $id('sort').addEventListener('click',mysort);
                 $id('input_box').addEventListener('click',change_li_arr);
                 $id('show_txt').addEventListener('click',change_li_arr);
             }
