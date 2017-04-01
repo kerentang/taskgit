@@ -61,7 +61,7 @@
     
     	//第二步：按钮点击查询事件
         //对匹配好的文本进行操作：用exec()和while遍历所有匹配文本并且push到一个新数组里
-        var count=0;
+        
         //页面载入后执行
         window.onload=function(){    
             $id('input-txt').focus();      
@@ -69,14 +69,19 @@
                 $id('query-txt').style.backgroundColor='#fee';
             };
             $id('query-str').onclick=function(){
+                var count=0;
                 if(check_null($id('query-txt').value)){
                     var q_str=$id('query-txt').value.trim(),qed_str=$id('input-txt').value;
                     var patt=new RegExp(q_str,'g');
                     var result;
                     while((result=patt.exec(qed_str))!=null){//不知道为何替换时脚本意外停止
-                        //qed_str=qed_str.replace(result,function(result){
-                        //    return result='<span class="point">'+result+'</span>';
-                        //});
+                        //qed_str=qed_str.replace(result,'<span style="color:red">$&</span>');
+                        var reg=new RegExp(result,'g');
+                        //函数也不行。。。。
+                        qed_str=qed_str.replace(reg,function(s){
+                           return s.fontcolor('Red');
+                        });
+                        alert(qed_str);
                         count=count+1;
                     }
                 }else{alert('请输入文本或查询文本！');}
