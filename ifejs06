@@ -83,7 +83,7 @@
                     query=$id('query'),
                     li_arr=[];
 
-        //第一步：获取input_txt.value：a-检查输入合法性；b-自动输入用于测试;
+                //第一步：获取input_txt.value：a-检查输入合法性；b-自动输入用于测试;
 
                 //check input value is number?true:false
                 function check_input(){
@@ -98,7 +98,7 @@
                    return input_txt.value=Math.round(11+Math.random()*88);
                 }
 
-        //第二步：将input_txt.value push 到数组li_arr里：检查数组长度;
+                //第二步：将input_txt.value push 到数组li_arr里：检查数组长度;
                 //check li_arr.length{0,30} for test,需要避免一开始页面刚加载时li_arr==[]的情况使out两项失效
                 //所以增加了&& input_txt.value共同判定,后面输入时发现第一个值输入不合法时也会导致out两项一直失效又增加了check_input()的判断
                 function check_length(){
@@ -125,13 +125,12 @@
             
               
 
-                //增减改删按钮操作
+                //第三步：增减改删按钮操作对数组的影响
                 function change_li_arr(e){
                 
                     var e=e || window.e,
                         target=e.target || e.srcElement;
-                    //var num=input_txt.value.trim();
-                    //这里插入一个function get_m_liarr()用来分割输入框里的数据；
+                    //由于多段输入split后变成了一个新数组，所以这里将unshift和push换成了concat
                     if(check_input()){
                         var qed_str=input_txt.value.trim();
                         var arr=[];
@@ -166,7 +165,7 @@
                     render(li_arr);
                 }
 
-        //第四步：渲染数组里的数值到dom里去，将li的高度设为数组里对应的值
+                //第四步：渲染数组里的数值到dom里去
                 //create li
                 function create_li(myli){
                     var oli=document.createElement('li');
@@ -174,9 +173,9 @@
                     oli.appendChild(txt);
                     return oli;
                 };
+
                 //render li_arr in ul--一开始这里渲染有问题，页面渲染后总是保留之前渲染的结果？单个函数测试没有问题，
                 //后来oul发现累计了，所以每次渲染前oul.innerHTML=''
-                //由于后面有几个可视化的排序，所以排序的染函数分离出来
                 
                 function render(li_arr){
 
@@ -192,7 +191,8 @@
                         return false;
                     }
                 }
-
+                
+                //分离出查询的渲染，因为查询时不需要改动li_arr，只需要改变匹配到的元素的css，所以分离出来
                 function render_query(){
                     var count=0,i;
                     if(check_length()){
@@ -207,12 +207,12 @@
                     }
                     $id('notice').innerHTML='您查询的文本共有： '+count+'处';
                 }
-                //清除上一次的查询效果
+                //清除上一次的查询效果：只需重新渲染一遍即可，因为第一次的渲染函数没有对css的设置
                 function clear_query(){
                     render(li_arr);
                 }
        
-        //监听点击事件
+        //页面载入后：监听点击事件
         window.onload=function(){
                 $id('input-txt').focus();
                 $id('input_box').addEventListener('click',change_li_arr);
