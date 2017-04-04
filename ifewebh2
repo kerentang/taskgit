@@ -91,51 +91,43 @@
             <h3>这里以后是一个侧栏，这是侧栏标题</h3>
             <h4>这是侧栏注册表单的标题</h4>
             <form method="POST">
-                <table>
-                    <tr>
-                    <td id="right">请输入邮箱地址</td>
-                    <td align="left"><input type="text" placeholder="这是一个文本输入框"></td>
-                    </tr>
-                    <tr>
-                    <td align="right"></td>
-                    <td align="left">邮箱地址按照格式输入</td>
-                    </tr>
-                    <tr>
-                    <td align="right">请输入密码</td>
-                    <td align="left"><input type="password"></td>
-                    </tr>
-                    <tr>
-                    <td align="right">请重复输入密码</td>
-                    <td align="left"><input type="password"></td>
-                    </tr>
-                    <tr>
-                    <td align="right"></td>
-                    <td align="left">密码由6-16位英文数字组成</td>
-                    </tr>
-                    <tr>
-                    <td align="right">性别</td>
-                    <td align="left"><input type="radio" name="sex" value='male' checked>男 <input type="radio" name="sex" value="female">女</td>
-                    </tr>
-                    <tr>
-                    <td align="right">城市</td>
-                    <td align="left"><select name="city">
+                    <div>
+                        <lable>请输入邮箱地址</lable>
+                        <input type="text" placeholder="这是一个文本输入框"><br>
+                        <span>邮箱地址按照格式输入</span>
+                    </div>
+                    <div>
+                        <lable>请输入密码</lable>
+                        <input type="password">
+                    </div>
+                    <div>
+                        <lable> 请重复输入密码</lable>
+                        <input type="password"><br>
+                        <span>密码由6-16位英文数字组成</span>
+                    </div>
+                    <div>
+                        <lable>性别</lable>
+                        <input type="radio" name="sex" value='male' checked>男 <input type="radio" name="sex" value="female">女
+                    </div>
+                    <div>
+                       <lable>城市</lable>
+                    <select name="city">
                         <option value="beijing">北京</option>
                         <option value="shanghai">上海</option>
                         <option value="shenzhen">深圳</option>
-                    </select></td>
-                    </tr>
-                    <tr>
-                    <td align="right">爱好</td>
-                    <td align="left"><input type="checkbox" name='hobby' value="art">艺术
+                    </select> 
+                    </div>
+                    <div>
+                        <lable>爱好</lable>
+                        <input type="checkbox" name='hobby' value="art">艺术
                         <input type="checkbox" name='hobby' value="sports">运动
-                        <input type="checkbox" name='hobby' value="science">科学</td>
-                    </tr>
-                    <tr>
-                    <td align="right">个人描述</td>
-                    <td align="left"><textarea name="message" id="text1" cols="30" rows="5">这是个人描述框请输入个人描述</textarea></td>
-                    </tr>
-                </table>
-            	<input type="button" value="确认提交" id="submit">
+                        <input type="checkbox" name='hobby' value="science">科学
+                    </div>
+                    <div>
+                        <lable>个人描述</lable>
+                        <textarea name="message" id="text1" cols="30" rows="5">这是个人描述框请输入个人描述</textarea>
+                    </div>
+                    <input type="button" value="确认提交" id="submit">
             </form>
         </div>
 	</div>
@@ -227,16 +219,7 @@
         #last{
            background-color: #999; 
         }
-        #sidebar form{
-            margin-left: 100px;
-        }
-        #sidebar form table{
-            border-collapse: collapse;
-        }
-        #sidebar form table,td{
-            border-style: none;
-            height: 30px;
-        }
+     
         #submit{
             width: 100%;
             background-color: #00f;
@@ -244,6 +227,27 @@
             border: 1px solid #00f;
             border-radius: 4px;
             height: 20px;
+        }
+        #sidebar form div{
+            width: 80%;
+            margin: 0 auto;
+        }
+        #sidebar form div lable{
+            display: inline-block;
+            width: 200px;
+            text-align: right;
+            vertical-align: middle;
+            margin: 10px;
+        }
+        #sidebar form div input,select{
+            margin: 10px;
+        }
+        #sidebar form div textarea{
+            margin-left: 10px;
+        }
+        #sidebar form div span{
+            margin-left: 240px;
+            color: #888;
         } 
        
     </style>
