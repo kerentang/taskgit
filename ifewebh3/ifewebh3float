@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float</title>
+</head>
+<body>
+    <div id="container">
+    	<div id="left"><img src="../images/timg.jpeg" alt="team" width="80" height="80"></div>
+    	<div id="right">
+    		<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+    	</div>
+    	<div id="middle">
+    	    <div>
+    		<h2>我们的团队</h2>
+			<h3>其实我是一个人在战斗。。。</h3>
+			<p>其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。</p>
+			<p>其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。</p></div>
+    	</div><!-- 关键在于中间层的div要放在后面当右浮动是中间层会跟到中间去，如果middle的div放在中间，宽度不好用margin控制，还容易把右浮动挤到下一层中去 -->
+    </div>
+</body>
+<style>
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	#container{
+		margin: 20px;
+		background-color: #eee;
+		overflow: auto;
+		border: 1px solid #999;
+	}
+	#left{
+       background-color: #fff;
+       width: 200px;
+       height: 120px;
+       float: left;
+       border: 1px solid #999;
+       margin: 20px;
+	}
+	#left img{
+		margin: 20px;
+		border: 1px solid #999;
+	}
+	#right{
+		float: right;
+		width: 120px;
+		margin: 20px;
+		height: 420px;
+		background-color: #fff;
+		border: 1px solid #999;
+	}
+	#right div{
+		width: 80px;
+		height: 80px;
+		border: 1px solid #999;
+		margin: 20px;
+	}
+	#middle{
+       background-color: #fff;
+       border: 1px solid #999;
+       width: auto;
+       margin: 20px 161px 20px 241px;
+       height: auto;   
+	}
+	#middle div{
+		margin: 20px;
+	}
+</style>
+</html>
