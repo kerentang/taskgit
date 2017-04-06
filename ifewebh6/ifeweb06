@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html06</title>
+	<link rel="stylesheet" href="./ifeweb06.css">
+</head>
+<body>
+	<div id="page">
+	    <div id="header">
+	    	<div id="icon">
+	    		<span>ifebaidu.com</span>
+	    	</div>
+	    </div>
+	    <div id="content">
+		    <div id="top">
+		    	<div id="tleft"></div>
+		    	<div id="trignt"></div>
+		    </div>
+		    <div id="middle">
+		    	<div class="article"><p></p></div>
+		    	<div class="article"><p></p></div>
+		    	<div class="article"><p></p></div>
+		    </div>
+		    <div id="bottom">
+		    	<div id="bleft"></div>
+		    	<div id="bright">
+		    		<div id="brightt"></div>
+		    		<div id="brightb"></div>
+		    	</div>
+		    </div>
+	    </div>
+		<div id="footerline"></div>
+	</div>
+</body>
+</html>

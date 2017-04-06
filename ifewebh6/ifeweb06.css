@@ -1,0 +1,44 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	background-color: #222;
+	width: 100%;
+	height: 100%;
+}
+#page{
+	width: 980px;
+	height: 1386px;
+	margin: 20px auto;
+	background-color: #fff;
+	border:1px solid #f00;
+	position: relative;
+}
+#header{
+	border-bottom:2px solid #938e8c;
+	height: 61px;
+	width: 892px;
+	margin:0 44px;
+}
+#icon{
+	height: 61px;
+	width: 110px;
+	color: #e00;
+}
+#icon span{
+	margin-left: 20px;
+	font-size: 12px;
+	font-family: 
+}
+#content{
+	margin: 20px 44px;
+	border:1px solid #f00;
+	height: auto;
+}
+#footerline{
+	border-top:1px solid #938e8c;
+	height: 50px;
+	width: 892px;
+	position: absolute;
+	bottom: 0;
+	right: 44px;
+}
