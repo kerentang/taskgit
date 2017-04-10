@@ -20,33 +20,53 @@
 		        </div>
 		        <div id="topright">
 		            <hr noshade="noshade">
-		        	<h2><span>A</span>BOUT</h2><h2><span>T</span>ECHNOLOGE</h2>
-		        	<p>about technologe about technologe about technologe </p>
-		        	<p>700</p>
-		        	<p>3.2</p><span>CSS</span><span>csscsscsscsscss</span>
+		        	<h5>ABOUT</h5><h5>TECHNOLOGE</h5>
+		        	<p id="fp1">About technologe about technologe about technologe </p>
+		        	<p id="fp2">700</p>
+		        	<div id="div1">3.2</div><div id="div2"><p>CSS</p><p>csscsscsscss</p></div>
 		        </div> 
 		    </div>
 		    <div id="middle">
-		    	<div class="article t1"><h3>WHAT</h3><p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p></div>
+		    	<div class="article t1"><h3>WHAT</h3><p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p></div>
 		    	<div class="article t2"><h3>WHEN</h3><p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p></div>
 		    	<div class="article t3"><h3>HOW</h3><p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p></div> 
 		    </div>
 		    <div id="bottom">
-		    	<div id="bleft"><h1>THE TECHNOLOGE OF FRONT</h1><h2>前端技术领域</h2><hr width="415"><p>
-		    		前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端<img src="./images/ife.jpg" alt="peutu" width="150" height="200" >前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
+		    	<div id="bleft"><h1><span>THE </span>TECHNOLOGE OF FRONT</h1><h2>前端技术领域</h2><hr noshade="noshade">
+		    	<p>
+		    		前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端<img src="./images/ife.jpg" alt="peutu" width="150" height="200" >前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端
 		    	</p></div>
 		    	<div id="bright">
 		    		<div id="brightt">
 		    		    <img src="./images/ife.jpg" alt="tu" width="450" height="275">
-		    		    <div><span>|前端技术</span>前端技术前端技术</div>
+		    		    <div>
+		    		        <div id="line"><p>
+		    		          前端技术<span>前端技术前端技术</span>
+		    		        </p></div>
+		    		    </div>
 		    		</div>
 		    		<div id="brightb">
-		    			<ul>
-		    				<li>前端前端前端前端前端.............前端</li>
-		    				<li>前端前端前端....................前端</li>
-		    				<li>前端...........................前端</li>
+		    		    <div id="box1">
+		    		    	<ul>
+		    				<li>前端前端前端前端前端.............<span>前端</span></li>
+		    				<li>前端前端前端....................<span>前端前</span></li>
+		    				<li>前端...........................<span>前端</span></li>
 		    			</ul>
-                        <div>0| one two three four five</div><p><img src="./images/tquote.png" alt="quote">hello world hello world hello world hello world hello world hello world<img src="./images/bquote.png" alt="quote"></p>
+		    		    </div>
+		    			
+                        <div id="box2">
+                            <div id="innerbox2">
+                            	<div id="lbox"><p>0</p></div>
+                            	<div id="linebox"></div>
+                            	<div id="rbox">
+                            	    <p>one two <br>three four five</p>
+                                    <p>hello world hello world hello world</p>
+                            	    </div>
+                            </div>
+                        </div>
+                       
+                        <p id="rtext"><img src="./images/tquote.png" alt="quote">hello world hello world hello world hello world hello world hello world hello hello hello hello hhhh hhhh hhhhh hhhh hh<img src="./images/bquote.png" alt="quote"></p>
+                        
 		    		</div>
 		    	</div>
 		    </div>
