@@ -1,0 +1,175 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	background-color: #222;
+	width: 100%;
+	height: 100%;
+	font-size: 100%;
+}
+#page{
+	width: 980px;
+	height: 1386px;
+	margin: 20px auto;
+	background-color: #fff;
+	position: relative;
+	font-family: Helvetica,SimHei,SimSun,KaiTi,Sans-serif,Serif;
+}
+#header{
+	border-bottom:2px solid #938e8c;
+	height: 61px;
+	width: 892px;
+	margin:0 44px;
+	font-family: SimHei;
+	font-size: 0.75em;
+	position: relative;
+}
+#date{
+    color: #d45d5c;
+    position: absolute;
+    right: 0;
+    top: 40px;
+}
+#icon{
+	height: 61px;
+	width: 110px;
+	color: #fff;
+	background-color: #d45d5c;
+	position: relative;
+}
+#icon p{
+	position: relative;
+	left: 10px;
+	top:40px;
+}
+#content{
+	margin: 40px 44px;
+	height: 1194px;
+    position: relative;
+}
+#top{
+	position: relative;
+	height: 301px;
+}
+#topleft{
+	float: left;
+}
+#tleft{
+	width: 191px;
+	height: 301px;
+	opacity: 0.6;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #a0c6ac;
+}
+#trignt{
+	width: 191px;
+	height: 301px;
+	position: absolute;
+	top: 0;
+	left: 450px;
+	opacity: 0.6;
+	background-color: #e5bac0;
+}
+#topright{
+	float: right;
+	width: 203px;
+	height: 301px;
+    position: relative;
+    padding: 0;
+}
+#topright hr{
+	height: 2px;
+	width: 203px;
+	color: #cc8091;
+	background-color: #cc8091;
+    margin-top: -2px;/*如果没有这个负值hr无法与左边顶部对齐*/
+}
+#middle{
+	height: 200px;
+	width: 650px;
+	margin: 30px 0px;
+	position: relative;
+}
+#middle .article{
+	height: 200px;
+	float: left;
+	margin-right: 2%;
+}
+#middle .t1{
+	width: 38%;
+}
+#middle .t2{
+	width: 28%;
+}
+#middle .t3{
+	width: 28%;/*题目中的40，30，30的比例不妥，除非加padding，然而加了padding后会造成box的尺寸变化，w3c建议不要给固定width的box直接加上padding;
+	解决办法有box-sizing,此题中为了方便换成了margin-平分了6%的width*/
+}
+#bottom{
+	height: 627px;
+	margin-top: 30px;
+}
+#bleft{
+    width: 415px;
+    height: 627px;
+    float: left;
+}
+#bleft img{
+    float:right;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin:10px;
+}
+#bright{
+    width: 450px;
+    height: 627px;
+    float: right;
+}
+#brightt{
+    margin-bottom: 30px;
+    width: 450px;
+    height: 275px;
+    position: relative;
+}
+#brightt > div{
+	height: 61px;
+	width: 450px;
+	background-color: #333;
+    position: absolute;
+	left: 0;
+	bottom:0;
+	opacity: 0.6;
+	color: #fff;
+}
+#brightb{
+    width: 450px;
+    height: 318px;
+    background-color: #eeedd6;
+    position: relative;
+}
+#brightb > div{
+	height: 160px;
+	width: 260px;
+	color: #fff;
+	background-color: #d45d5c;
+    position: absolute;
+    left: 0;
+    bottom:0;
+}
+#brightb  p{
+	width: 150px;
+	word-wrap: break-word;
+	word-break: break-all;
+	position: absolute;
+	left: 280px;
+	bottom:20px;
+}
+#footerline{
+	border-top:1px solid #938e8c;
+	height: 50px;
+	width: 892px;
+	position: absolute;
+	bottom: 0;
+	right: 44px;
+}
