@@ -8,8 +8,7 @@ html,body{
 	-webkit-box-sizing:border-box;
 }
 .container{
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding:10px 10px;
 	border:1px solid #999;
 	background-color: #eee;
 	max-width: 100%;
@@ -17,18 +16,20 @@ html,body{
 	color: #f00;
 }
 .row{
-    margin: 0 10px;
     max-width: 100%;
     height: auto;
-    border:1px solid #00f;
+    text-align: center;
 }
 [class*='col-']{
+	height: 70px;
+	line-height: 70px;
 	float: left;
-	margin: 10px;
-	height: 50px;
-	border:1px solid #999;
-	text-align: center;
-	line-height: 50px;
+	padding: 10px;
+}
+[class*='col-'] > div{
+    height: 50px;
+    border:1px solid #999;
+    line-height: 50px;
 }
 .row:after{
 	content: '';
