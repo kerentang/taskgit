@@ -1,0 +1,49 @@
+//获取dom节点-id
+function $id (id) {
+	return document.getElementById(id);
+}
+var container=$('container');//获取容器节点
+//获取dom节点-classname，ie5678不兼容的document.getElementsByClassName(classname)
+function $cn (classname) {
+	return document.getElementsByClassName(classname);
+}
+//前序中序后序遍历的函数
+//前序
+function dlrtraver (nname) {
+	// body...
+}
+//中序
+function ldrtraver (nname) {
+	// body...
+}
+//后序
+function lrdtraver (nname) {
+	// body...
+}
+//统一遍历的函数;
+function traver (e) {
+	var e=e || window.e,
+    target=e.target || e.srcElement;
+    switch(target.id){
+    	case 'dlr':
+    		dlrtraver()
+    		break;
+    	case 'ldr':
+    		ldrtraver()
+    		break;
+    	case 'lrd':
+    		lrdtraver()
+    		break;
+    }
+    render();
+}
+//render()给遍历的节点添加额外的样式running-背景颜色变成黄色
+function render () {
+
+}
+//各个btn的监听事件
+window.onload=function() {
+	$id('dlr').addEventListener('click',traver);
+	$id('ldr').addEventListener('click',traver);
+	$id('lrd').addEventListener('click',traver);
+}
