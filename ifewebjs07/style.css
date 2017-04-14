@@ -61,7 +61,3 @@ html,body{
 	border-radius: 5px;
 	color: #fff;
 }
-/*给正在遍历的节点添加特殊样式running*/
-.running{
-    background-color: #ff0;
-}
