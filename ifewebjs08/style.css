@@ -1,0 +1,84 @@
+html,body{
+	margin-bottom: 0;
+	padding-top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #eee;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-flow: row nowrap;
+}
+#container{
+	width: auto;
+	height: auto;
+	margin-bottom: 0 auto;
+	padding: 20px;
+	border:1px solid #999;
+	background-color: #fff;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-flow: column wrap;
+}
+.root,.box{
+	flex: auto;
+	height: auto;
+	width: auto;
+	padding: 10px;
+	border: 1px solid #f00;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	background-color: #fff;
+	flex-flow: row wrap;
+}
+.box{
+	margin: 10px 10px;
+}
+.operate{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-flow: row wrap;
+}
+.btn-sort{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-flow: row nowrap;
+	margin: 20px 0;
+}
+#input-text{
+	margin: 10px;
+}
+.btn-ad{
+	flex: none;
+	border: 1px solid #00f;
+	background-color: #f0f;
+	border-radius: 5px;
+	color: #fff;
+	margin: 10px;
+}
+.btn{
+	flex: none;
+	border: 1px solid #f0f;
+	margin: 0 10px;
+	background-color: #00f;
+	border-radius: 5px;
+	color: #fff;
+}
+

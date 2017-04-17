@@ -14,6 +14,7 @@ function dlrtraver (node) {
 		dlrtraver(node.firstElementChild);
         dlrtraver(node.lastElementChild);
 	}
+	return nodearr;
 }
 //中序
 function ldrtraver (node) {
@@ -22,6 +23,7 @@ function ldrtraver (node) {
         nodearr.push(node);
         ldrtraver(node.lastElementChild);
 	}
+	return nodearr;
 }
 //后序
 function lrdtraver (node) {
@@ -30,6 +32,7 @@ function lrdtraver (node) {
         lrdtraver(node.lastElementChild);
         nodearr.push(node);
 	}
+	return nodearr;
 }
 
 //change_style()给遍历的节点添加额外的样式背景颜色变成黄色
@@ -46,7 +49,7 @@ function change_style () {
 		    }
 			nodearr[i].style.backgroundColor='#ff0';
 		}
-		i++;
+		++i;
 	},1000);
 }
 //清除添加的样式
