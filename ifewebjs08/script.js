@@ -27,7 +27,8 @@ function mylfre(node){
 }
 
 
-//深度优先-递归;:children[0]==textNode,注意！所以不能用firsrElementChild,要用children[1]
+//深度优先-递归;:children[0]==textNode,注意！所以不能用firsrElementChild,要用children[1],
+//后面要查看第一项子节点的内容所以还是从0开始。。。
 function myffre (node) {
 	if(node!==null){
     	nodearr.push(node);
@@ -61,7 +62,7 @@ function myquery(node){
                 nodearr[j-1].style.backgroundColor='#0ff';
             }
             nodearr[j].style.backgroundColor='#ff0';
-        }
+        };
         j++;
     },500);
 }
@@ -89,6 +90,7 @@ function clearstyle(){
 	clearInterval(timer);//取消定时执行的timer,以便能随时开启另外一种遍历而不会存在上一次的timer的干扰
     for(var i=0;i<nodearr.length;i++){
     	nodearr[i].style.backgroundColor='#fff';
+        nodearr[i].style.color='#000';
     }
     nodearr=[];//清除上一次点击的样式改变
 }
@@ -114,5 +116,7 @@ window.onload=function(){
 	$id('lf-re').addEventListener('click',init);
 	$id('ff-re').addEventListener('click',init);
 	//查询
-	$id('query').addEventListener('click',myquery(myroot));
+	$id('query').onclick=function(){
+        myquery(myroot);
+    }
 }
