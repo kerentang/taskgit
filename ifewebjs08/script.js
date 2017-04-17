@@ -14,16 +14,19 @@ var nodearr=[];//定义一个空数组用来保存节点
 //遍历操作-广度优先／深度优先；
 //广度优先-递归;
 function mylfre(node){
-	if(node!==null){
-        if(node.children.length >0){
-            for(var i=0;i<node.children.length;i++){
-                var child=node.children[i];
-                mylfre(child);
+      nodearr.push(node);
+      var arr = [];
+      arr.push(node);  //专门用来取第一项子节点,因为arr.shift()和arr.pop()会更改原数组，所以新建一个数组专门
+      while(arr.length != 0) {
+          var temp = arr.shift();
+          var n = temp.childNodes.length;
+          for(var i = 0;i < n;i++) {
+            if (temp.childNodes[i].nodeType == "1") {
+                nodearr.push(temp.childNodes[i]);
+                arr.push(temp.childNodes[i]);
             }
-            nodearr.push(node);
         }
-        else{nodearr.push(node);}
-    }
+    } 
 }
 
 
@@ -35,8 +38,7 @@ function myffre (node) {
     	if(node.children.length>0){
     		var child=node.children[0];
             for(var i=0;i<node.children.length;i++){
-                myffre(child);
-                child=child.nextElementSibling;
+                myffre(node.children[i]);
     	    }
     	}
     }
@@ -47,24 +49,24 @@ function myffre (node) {
 //查询函数
 function myquery(node){
     clearstyle();
-    var inputtext=myinput.value.trim().toString(),j=0;
+    var inputtext=myinput.value.trim().toString(),i=0,count=0;
     myffre(node);
-    timer=setInterval(function() {
-        if(j>nodearr.length-1){
-            clearInterval(timer);
-            nodearr[nodearr.length-1].style.backgroundColor='#0ff';
-            return;
-        }else if(j<nodearr.length){
-            if(j>0){
-                if(nodearr[j].innerHTML==inputtext){
-                    nodearr[j].style.color='#f00';
-                }
-                nodearr[j-1].style.backgroundColor='#0ff';
+    timer=setInterval(function(){
+        ++i;
+        if (i<nodearr.length) {
+            nodearr[i-1].style.backgroundColor="#0ff";
+            if (inputtext === nodearr[i].innerHTML) {
+                nodearr[i].style.backgroundColor="#f00";
+                count++;
+            } else {
+                nodearr[i].style.backgroundColor="#ff0";
             }
-            nodearr[j].style.backgroundColor='#ff0';
+            $id('notice').innerHTML='找到相关内容:'+inputtext+'共有'+count+'处';
+        } else {
+            nodearr[nodearr.length-1].style.backgroundColor="#0ff";
+            clearInterval(timer);
         };
-        j++;
-    },500);
+},500)
 }
 
 //change_style()给遍历的节点添加额外的样式背景颜色变成黄色
@@ -90,7 +92,6 @@ function clearstyle(){
 	clearInterval(timer);//取消定时执行的timer,以便能随时开启另外一种遍历而不会存在上一次的timer的干扰
     for(var i=0;i<nodearr.length;i++){
     	nodearr[i].style.backgroundColor='#fff';
-        nodearr[i].style.color='#000';
     }
     nodearr=[];//清除上一次点击的样式改变
 }
