@@ -46,10 +46,11 @@ function myffre (node) {
 }
 
 //创建新元素
-function createele (inputtext) {
+function createele () {
     var ele=document.createElement('div');
     var elep=document.createElement('p');
-    var myinputtext=docunment.createTextNode(inputtext);
+    var myinputtext;
+    if(inputtext==''){alert('请先输入内容！');}else{myinputtext=document.createTextNode(inputtext.trim());}
     elep.appendChild(myinputtext);
     ele.appendChild(elep);
     ele.setAttribute('class','box');
@@ -57,29 +58,47 @@ function createele (inputtext) {
 }
 
 //定位元素位置
-var mynode;
-function getnode (e) {
-    var e=e || window.e;
-    var target=e.target || e.srcElement;
-    if(target.nodeName.toLowerCase()=== 'div' && target.getAttribute('class')=='box'){
-        target.style.backgroundColor='#00f';
-        target.style.color='#f00';
-        mynode=target;
-        return mynode;
-    }else{alert('选择节点无效！')}
+var mynode='';
+function divclick () {
+    document.querySelectorAll('div').forEach(function(item){
+        item.onclick = function(e){
+            if(e.target.getAttribute('class')=='box'){
+                 clearstyle();
+                //阻止冒泡
+                window.event ? window.event.cancleBubble==true : e.stopPropagation();
+                this.style.backgroundColor='#00f';
+                mynode=this;
+            }
+        }
+    })
 }
-
+divclick();
+ window.ondblclick = function(e) {
+     window.event ? window.event.cancelBubble = true : e.stopPropagation();
+     clearstyle();
+}
 //处理添加函数
 function addele () {
-   var mynodeadd=getnode(e);
-   var myele=createele(inputtext);
-   return mynodeadd.appendChild(myele);
+   var input=$id('input-text').value.trim();
+   if(input==''){alert('请先输入内容！')}
+   else if(mynode==''){alert('请先选中节点！')}
+   else{
+       var ele=document.createElement('div');
+       var elep=document.createElement('p');
+       elep.innerHTML=input;
+       ele.appendChild(elep);
+       ele.setAttribute('class','box');
+       mynode.appendChild(ele);
+       divclick();
+   }
 }
 //删除元素
 function delele () {
-    var mynodedel=getnode(e);
-    var myparent=mynodedel.parentNode;
-    myparent.innerHTML='';
+   if (mynode == "") {
+         alert("请选择要删除的元素")
+     } else {
+        mynode.remove();
+}
 }
 
 //change_style()给遍历的节点添加额外的样式背景颜色变成黄色
@@ -102,11 +121,17 @@ function change_style () {
 
 //清除添加的样式
 function clearstyle(){
-	clearInterval(timer);//取消定时执行的timer,以便能随时开启另外一种遍历而不会存在上一次的timer的干扰
-    for(var i=0;i<nodearr.length;i++){
-    	nodearr[i].style.backgroundColor='#fff';
+    if(nodearr.length){
+        clearInterval(timer);//取消定时执行的timer,以便能随时开启另外一种遍历而不会存在上一次的timer的干扰
+        for(var i=0;i<nodearr.length;i++){
+        nodearr[i].style.backgroundColor='#fff';
+        }
+         nodearr=[];//清除上一次点击的样式改变
+    }else{
+        document.querySelectorAll("div").forEach(function(item) {
+             item.style.backgroundColor='#fff';
+        })
     }
-    nodearr=[];//清除上一次点击的样式改变
 }
 
 //将各个阶段的事件写在一起方便监听
@@ -130,7 +155,11 @@ window.onload=function(){
 	$id('lf-re').addEventListener('click',init);
 	$id('ff-re').addEventListener('click',init);
     $id('clear').addEventListener('click',clearstyle);
-    $id('root').addEventListener('click',getnode);
-    $id('add-ele').addEventListener('click',addele);
-    $id('del-ele').addEventListener('click',delele);
+    
+    $id('add-ele').onclick=function(){
+        addele();
+    }
+    $id('del-ele').onclick=function(){
+        delele();
+    }
 }
