@@ -84,6 +84,7 @@
             if(len==0){
                 notice_text.innerHTML='姓名不能为空';
                 $id('content').style.borderColor='#f00';
+                notice_text.style.color='#f00';
                 return false;
             }else if(len>16 || len<4){
                 notice_text.innerHTML='姓名长度不在范围内！';$id('content').style.borderColor='#f00';
@@ -96,6 +97,7 @@
                 if(reg.test($id('content').value.trim())){
                     notice_text.innerHTML='名称格式正确！';
                     $id('content').style.borderColor='#0f0';
+                    notice_text.style.color='#0f0';
                 }else{
                     notice_text.innerHTML='名称格式不正确！';
                 }
