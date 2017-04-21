@@ -105,7 +105,6 @@ function getlen (cur_input) {
 function check_length (cur_input,minlen,maxlen) {
 	var mylen=getlen(cur_input);
     if(mylen>minlen && mylen<maxlen){
-        alert(mylen);
         return mylen;
     }else{
         return false;
@@ -210,5 +209,6 @@ window.onload=function(){
     $id('box').addEventListener('click',myblur);
     $id('submit').onclick=function(){
         mysubmit(result);
+        $id('myform').submit();
     }
 }
