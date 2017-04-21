@@ -102,9 +102,9 @@ function getlen (cur_input) {
 }
 
 //检查输入框的长度是否符合规定
-function check_length (cur_input) {
+function check_length (cur_input,minlen,maxlen) {
 	var mylen=getlen(cur_input);
-    if(mylen>4 && mylen<16){
+    if(mylen>minlen && mylen<maxlen){
         alert(mylen);
         return mylen;
     }else{
@@ -114,20 +114,52 @@ function check_length (cur_input) {
 
 //长度符合规定时检查输入是否合法：密码只能由数字和英文大小写字母组成；且任意输入框均不能含有空格；
 function check_input(cur_input){
-    if(check_length (cur_input)){
-    	var myinput=cur_input.value.trim();
-        var regtext=/[a-zA-Z0-9_\u4e00-\u9fa5]/g,regpsd=/[a-zA-Z0-9]/g,regs=/[\s]/g;
-        if(cur_input.id=='psd1' || cur_input.id=='psd2'){
-            //要获取下一个兄弟元素用nextsibling或者:after动态生成p,然后display=block;
-            //要获取下一个input兄弟元素用伪元素或者伪态next[input]/input:
-             if(regpsd.test(myinput) && !regs.test(myinput)){
-                return myinput;
+    	  var myinput=cur_input.value.trim();
+        //判断input：type=text 和 password里的内容是否符合规则：中英文数字（text）
+        var regtext=/[a-zA-Z0-9_\u4e00-\u9fa5]/g;
+        //判断输入框字符串之间是否有空格
+        var regpsd=/[a-zA-Z0-9]/g,regs=/[\s]/g;
+        //判断mail格式
+        var regmail=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+        //判断phone-num是否正确
+        var regnum=/^1\d{10}/g;//验证手机号
+        //判断邮箱地址是否正确
+    if(check_length (cur_input,6,25)){
+        if(cur_input.id=='mail'){
+            if(regmail.test(myinput) && !regs.test(myinput)){
+              return myinput;
             }
-            else{return false;}
-        }else{
+        }//判断电话是否正确
+    }
+    if(check_length (cur_input,10,12)){
+        if(cur_input.id=='phone-num'){
+            if(regnum.test(myinput) && !regs.test(myinput)){
+              return myinput;
+            }
+        }//判断名称账号是否正确
+    }
+    if(check_length (cur_input,4,16)){
+        if(cur_input.id=='input-text'){
             if(regtext.test(myinput) && !regs.test(myinput)){
-                return myinput;
-            }else{return false;}
+              return myinput;
+            }
+        }//判断
+    }
+    if(check_length (cur_input,5,19)){
+        if(cur_input.id=='psd1'){
+            if(regpsd.test(myinput) && !regs.test(myinput)){
+              return myinput;
+            }
+        }else if(cur_input.id=='psd2'){
+            if(regpsd.test(myinput) && !regs.test(myinput)){
+               if(cur_input.value==$id('psd1').value){
+                  return myinput;
+               }else{
+                alert('密码不正确');
+                result=false;
+                return false;
+               }
+            }
         }
     }
 }
