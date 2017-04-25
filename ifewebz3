@@ -54,14 +54,15 @@
             opts.text=value;
             return opts;
         }
-        var myoptcity;
         //连接两个select;
         
-        function contact(){
-            myoptcity= $id('cityname').options[$id('cityname').selectedIndex].text;
+        function contact(myoptcity){
+            var myoptcity= $id('cityname').options[$id('cityname').selectedIndex].text;
             var len=city_school[myoptcity].length;
+            myschool.length=0;
             for(var i=0;i<len;i++){
-                myschool.options[i]=createopt(city_school[myoptcity][i]);
+                var temp=createopt(city_school[myoptcity][i]);
+                myschool.options.add(temp);
             }
         }
 		//show()->change display 
@@ -79,8 +80,8 @@
 		}
 		window.onload=function(){
 		    $id('identy').addEventListener('click',show);
-		    $id('student').onchange=function(){
-		        contact();
+		    $id('cityname').onchange=function(){
+		        contact(this);//第一次监听区域为student错了导致第二个select选不中其他选项监听改为cityname正常了,因为传入的this..
 		    }
 		}
 	</script>
