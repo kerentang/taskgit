@@ -8,9 +8,9 @@
 <body>
 	<div id="main">
 		<div id="mytable">
-			<table>
+			<table id="tbl">
 				<tr>
-					<th>序号</th>
+					<!-- <th>序号</th> -->
 					<th>姓名</th>
 					<th>语文</th>
 					<th>数学</th>
@@ -18,7 +18,7 @@
 					<th>总分</th>
 				</tr>
 				<tr>
-				    <td>1</td>
+				    <!-- <td>1</td> -->
 					<td>小明</td>
 					<td>80</td>
 					<td>90</td>
@@ -26,7 +26,7 @@
 					<td>240</td>
 				</tr>
 				<tr>
-					<td>2</td>
+					<!-- <td>2</td> -->
 					<td>小红</td>
 					<td>90</td>
 					<td>60</td>
@@ -34,7 +34,7 @@
 					<td>220</td>
 				</tr>
 				<tr>
-					<td>3</td>
+					<!-- <td>3</td> -->
 					<td>小亮</td>
 					<td>80</td>
 					<td>60</td>
@@ -45,17 +45,18 @@
 		</div>
 		<div id="btns">			
 			<select name="mysort" id="sortby">
-			    <option value="sum">总分</option>
+			    
 				<option value="zh">语文</option>
-				<option value="en">英语</option>
 				<option value="math">数学</option>
+				<option value="en">英语</option>
+				<option value="sum">总分</option>
 			</select>
-			<button id="up">升序(默认)</button>
-			<button id="down">降序</button>
-			<button id="dele">删除</button>
-			<button id="myadd">增加一行</button>
-			<input type="text" id="user-input" placeholder="逗号分隔数据输入">
-			<p id="notice">注意：逗号分隔数据输入，无需输入序号，如：小华，89，73，98，60，如无输入则使用系统默认数据</p>
+			<div id="mybtn">
+				<button id="up">升序(默认)</button>
+			    <button id="down">降序</button>
+			    <button id="dele">删除</button>
+			    
+			</div>
 		</div>
 	</div>
    <script src='./script.js'></script>
