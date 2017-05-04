@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task3.4</title>
+</head>
+<body>
+	<div id="main">
+		<canvas width="480" height="480" id="ui-layer">不支持canvas的替代内容</canvas>
+		<canvas width="400" height="400" id="box">不支持canvas的替代内容</canvas>
+		<div id="btn">
+		    <button class="btns" id="go">前进</button>
+		    <button class="btns" id="turnleft">左转</button>
+		    <button class="btns" id="turnright">右转</button>
+		    <button class="btns" id="turnback">向后转</button>
+		</div>
+	</div>
+</body>
+<style>
+html,body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+#main{
+	width: 522px;
+	height: 580px;
+	padding: 20px;
+	border: 1px solid #f00;
+	display: flex;
+	flex-flow: column nowrap;
+	background-color: #edf;
+	position: relative;
+	overflow:auto;
+	box-sizing: border-box;
+}
+canvas{
+	position: absolute;
+}
+#ui-layer{
+	border: 1px solid #eee;
+	z-index: 3;
+	background-color: rgba(255,255,255,0);
+}
+#box{
+    border: 1px solid #00f;
+	background-color: rgba(255,255,255,0);
+	left: 60px;
+	top: 60px;
+	z-index: 2;
+}
+#btn{
+	position: absolute;
+	width: 480px;
+	height: 40px;
+	bottom: 20px;
+	left: 20px;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+}
+#btn button{
+	height: 30px;
+}
+</style>
+<script src='./script.js'></script>
+</html>
