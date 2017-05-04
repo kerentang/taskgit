@@ -92,22 +92,21 @@ var c=document.getElementById('ui-layer');
       
  //        cax.restore();
 	// }
-    function init(){
+    function init(e){
+    	e=e || window.e,target=e.target || e.srcElement;
         cax.clearRect(0,0,bwidth,bheight);
         cax.save();
-        var i= triangle.x0;
-        var j= triangle.y0;
-        switch(triangle.direct){
-        	case 1 :
+        switch(target.id){
+        	case 'go':
         		drawrow(1);
         		break;
-        	case -1 :
+        	case 'back':
         		drawrow(-1);
         		break;
-        	case 2 :
+        	case 'up' :
         		drawcol(-1);
         		break;
-        	case -2 :
+        	case 'down' :
         		drawcol(1);
         		break;
         }
@@ -119,15 +118,9 @@ var c=document.getElementById('ui-layer');
     window.onload=function(){
     	drawgrid();
         $id('go').addEventListener('click',init);
-        $id('turnleft').onclick=function(){
-        	triangle.direct=triangle.direct*-1;
-        }
-        $id('turnright').onclick=function(){
-         	triangle.direct=triangle.direct*-1;
-         }
-         $id('turnback').onclick=function(){
-         	triangle.direct=triangle.direct*-1;
-         }
+        $id('back').addEventListener('click',init);
+         $id('up').addEventListener('click',init);
+        $id('down').addEventListener('click',init);
     }
 	
 
