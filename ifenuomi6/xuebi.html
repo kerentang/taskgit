@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>task6自定义check,radio</title>
+	<title>task6-雪碧图实现自定义radio,checkbox</title>
 </head>
 <body>
 	<div id="main">
@@ -43,36 +43,26 @@
 			font-weight: bold;
 		}
         input+lable{
-        	width:16px;
+            width:16px;
             height: 16px;
-            border: 1px solid #d9d9d9;
-            display: flex;
-            display: -webkit-flex;
-        }
-        input:checked+lable{
-        	border: 1px solid #f00;
-        	font-weight: bold;
-        }
-        input:checked+lable::after{
-        	margin: auto;
-        	color: #f00;
-        	content: '\2714';            
-            width: 8px;
-            height: 8px;
-            line-height: 8px;
-            text-align: center;
-            font-size: 12px;
+            border: none;
+            display: inline-block;
+            line-height: 16px;
         }
         input[type='radio']+lable{
-        	border-radius: 50%;
+            background: url('./bg.png') no-repeat;
+            background-position: -24px -10px;
         }
-        input[type='radio']:checked+lable::after{
-        	border-radius: 50%;
-        	content: ' ';
-        	background-color: #f00;
+        input[type='checkbox']+lable{
+        	background: url('./bg.png') no-repeat;
+        	background-position: -25px -32px;
         }
-	
+        input[type='checkbox']:checked+lable{
+        	background-position: -60px -32px;
+        }
+        input[type='radio']:checked+lable{
+            background-position: -59px -10px;
+        }
 	</style>
-	
 </body>
 </html>
