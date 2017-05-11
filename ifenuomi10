@@ -69,7 +69,7 @@
 </style>
 <script>
     var reg1=/^1[34578]\d{9}/g;//测试电话号码
-    var reg2=/\b[A-z]+(?:-[A-z]+)*\s+\1\b/g;//测试输入的字符串是否有相邻重复单词 
+    var reg2=/\b([a-zA-Z]+)\b\s+\b\1\b/g;//测试输入的字符串是否有相邻重复单词 /\b([a-z]+)\b\s+\b\1\b/;/\b[a-zA-Z]+\s+\1\b/g
     function $id(id){
         return document.getElementById(id);
     }
