@@ -132,22 +132,27 @@
 
         //第三步：操作btn，改变li_arr的值和长度:1.通过id获取btn；2.增减改删btn的操作；3.4种排序的实现            
                 //冒泡排序
-                //排序可视化：单独写一个专门用来展示排序可视化的js文件
-                
+                //排序可视化：由于不改变li_arr的长度，所以将渲染函数分离出来，直接对dom进行操作  
+                //排序可视化：需要保存数组改变的状态，可以考虑用闭包，然后用 setInterval(f(),5000)定时调用，里面设置一个状态参数自动停止调用即可;    
+                var sarr=[];          
                 function sortarr(){
-                    var lis=li_arr.length,i,j,temp,newarr;
-                    newarr=li_arr.slice(0);
+                    var lis=li_arr.length,i,j,temp,arr;
+                    
+                    arr=li_arr.slice(0);
                     for(i=0;i<lis;i++){
-                        for(j=lis-1;j>i;j--){
-                            var temp=newarr[j-1];
-                            if(newarr[j]<newarr[j-1]){
-                                newarr[j-1]=newarr[j];
-                                newarr[j]=temp;
+                        for(j=lis-1;j>i;j--){                               
+                            var temp=arr[j-1];
+                            if(arr[j]<arr[j-1]){
+                                arr[j-1]=arr[j];
+                                arr[j]=temp;
                             }
+                            sarr.push(arr);   
                         }
                     }
-                    return newarr;
+                    return sarr;
                 }
+
+                
                 
                 
                 //快排-选定一个中间值作为比较对象，比中间小放在左边，比中间大放在右边，重复操作用递归，若数组较大需要防止栈溢出，使用尾递归优化；
@@ -290,7 +295,8 @@
                 $id('input_txt').focus();
                 $id('input_box').addEventListener('click',change_li_arr);
                 $id('show_txt').addEventListener('click',change_li_arr);
-                $id('sort').addEventListener('click',mysort);
+                $id('sort').addEventListener('click',mysort);//排序的操作
+                
             }
         </script>
     </div>

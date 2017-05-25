@@ -51,7 +51,7 @@
 	    </style>
 	    <script>
 	    	
-            window.onload=function(){
+        
 
                 //get ele by id,注意jq的$
                 function $id(id){
@@ -135,8 +135,10 @@
                     check_uls();
                 }
                 //bind click and ele
-               $id('input_box').addEventListener('click',handle);
-               $id('show_txt').addEventListener('click',handle);
+            window.onload=function(){
+                $id('input_txt').focus();
+                $id('input_box').addEventListener('click',handle);
+                $id('show_txt').addEventListener('click',handle);
 
             }
 

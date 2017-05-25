@@ -92,7 +92,9 @@
                 notice_text.style.color='#f00';
                 return false;
             }else if(len>16 || len<4){
-                notice_text.innerHTML='姓名长度不在范围内！';$id('content').style.borderColor='#f00';
+                notice_text.innerHTML='姓名长度不在范围内！';
+                $id('content').style.borderColor='#f00';
+                notice_text.style.color='#f00';
                 return false;
                 }
             else{return true;}
@@ -109,9 +111,19 @@
                 }
             }
 		}
-		$id('check').onclick=function(){
-		    check_input();
+		window.onload=function(){
+            $id('check').onclick=function(){
+		        check_input();
+		    }
+		    //e || window.e ;e.keyCode || e.which兼容了浏览器的差异，但是firefox没有反应....
+		    $id('check').onkeydown=function(e){
+                var e=e || window.e;
+		        if(e.keyCode==13 || e.which==13){
+		            check_input();
+		        }
+		    }
 		}
+		
 	</script>
 </body>
 </html>

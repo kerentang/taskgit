@@ -8,18 +8,58 @@
 	<div id="main">
 	    <img src="./images/ife.jpg" alt="back">
 	    <div id="box">
+	    	<div class="line-v line left"></div>
+	    	<div class="line-v line right"></div>
+	    	<div class="line-h line top"></div>
+	    	<div class="line-h line bottom"></div>
 	    	<p id="text">欢迎参加百度前端技术学院</p>
 	    	<a href="#">点击报名</a>
 	    </div>
 	</div>
 </body>
 <style>
+	.line{
+		position: absolute;
+		background: #fff;
+		transform-origin: center;
+		animation: scale 2s infinite linear;
+	}
+	.line-v{
+		top: 0;
+		bottom: 0;
+		width: 5px;
+	}
+	.line-h{
+		height: 5px;
+		left: 0;
+		right: 0;
+	}
+	.left{
+		left: 0;
+	}
+	.right{
+		right: 0;
+	}
+	.top{
+		top: 0;
+	}
+	.bottom{
+		bottom: 0;
+	}
     @keyframes myfirst {
 		0% {
 			background-position: 0;
 		}
 		100% {
 			background-position: -100%;
+		}
+	}
+	@keyframes scale {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
 		}
 	}
 	@keyframes mysecond{
@@ -64,7 +104,7 @@
 		animation: myfirst 3s infinite linear;
         width: 540px;
         height: 360px;
-        border: 5px solid #fff;
+        
         box-sizing: border-box;
         margin: 20px 30px;
         position: absolute;
