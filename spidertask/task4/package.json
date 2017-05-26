@@ -21,7 +21,11 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "koa-router": "7.0.0",
-    "koa-bodyparser": "3.2.0"
+    "koa-bodyparser": "3.2.0",
+    "nunjucks": "2.4.3",
+    "mime":"1.3.6",
+    "mz": "2.6.0",
+    "koa-static": "3.0.0"
   },
   "bugs": {
     "url": "https://github.com/kerentang/taskgit/issues"
