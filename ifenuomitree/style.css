@@ -9,7 +9,6 @@ html,body{
 	align-items: center;
 	flex-flow: row;
 	box-sizing: border-box;
-	padding-top: 30px;
 }
 #main{
 	width: auto;
@@ -17,57 +16,47 @@ html,body{
 	background-color: #fff;
 	box-shadow: 20px 20px 20px #ddd;
 	display: flex;
-/*	justify-content: center;
-	align-items: center;*/
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
 	flex-flow: row;
 	box-sizing: border-box;
-	padding: 20px;
-}
-#browse{
-	width: auto;
-	border: 1px solid #eee;
-	height: 100%;
-	font-size: 16px;
+	padding: 40px;
+	margin-top: 100px;
+	overflow: auto;
+	font-size: 24px;
 }
 #root{
-    height: auto;
+    height: 600px;
+	width: 500px;
+	padding: 80px;
+	background-color: #eee;
 }
-ul li{
+#root:hover{
+	cursor: pointer;
+}
+.node ul{
 	list-style-type: none;
-	list-style-image: url('./images/arrow268.png');
 	list-style-position: inside;
 	margin-bottom: 5px;
 }
+.node .tree{
+	height: 40px;
+	line-height: 40px;
+}
+.hiden{
+	display: none;
+}
+.fileclose{
+	background: url(images/closefolder.png) left center no-repeat;
+	padding-left: 15px;
+}
+.fileopen{
+    background: url(images/openfolder.png) left center no-repeat;
+	padding-left: 15px;
+}
+.files{
+	background: url(images/file.png) left center no-repeat;
+	padding-left: 15px;
+}
 
-.node{
-    list-style-type: none;
-	list-style-image: url('./images/arrowdown.png');
-	margin-top: 10px;
-}
-.pa{
-    
-}
-.fi{
-
-}
-.hide{
-	height: 0;
-}
-.show{
-    height: auto;
-}
-/*#details{
-	width: 70%;
-	border: 1px solid #eee;
-	height: 100%;
-	box-sizing: border-box;
-}*/
-h3{
-	height: 50px;
-	line-height: 50px;
-	width: 100%;
-	border: 1px solid #eee;
-	font-size: 24px;
-	font-weight: 700;
-	text-align: center;
-}

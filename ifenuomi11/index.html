@@ -6,24 +6,22 @@
 	<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-	<div id="main">
-		<textarea name="" id="left"># Hello world</textarea>
-		<div id="right"></div>
-	</div>
-	<script src='./marks.js'></script>
-	<script>
-		function $id(id){
-		    return document.getElementById(id);
-		}
-		var leftin=$id('left');
-		var rightout=$id('right');
-		function update(){
-		    rightout.innerHTML=marks(leftin.value);
-		}
-		update();
-		window.onload=function(){
-		    rightout.addEventListener('input',update)
-		}
-	</script>
+	    <div id="main">
+        <textarea id="left"># Hello World
+</textarea>
+        <div id="right"></div>
+    </div>
+    <script src="./marks.js"></script>
+    <script>
+        var right = document.getElementById('right');
+        var left = document.getElementById('left');
+        
+        left.addEventListener('input',update);
+        function update(){
+            right.innerHTML = markmark(left.value);
+        }
+        update();
+        
+    </script>
 </body>
 </html>
