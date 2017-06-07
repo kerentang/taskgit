@@ -29,22 +29,43 @@ var nodearr = [{
         {name: '父节点22', children: [{name: '子节点2'}, {name: '子节点2'}, {name: '子节点2'}]}]
 }];
 // 渲染节点到文档中
-function renderdom (nds) {
+let DOMTreeRender = (nodes, DOMNode) => {
   let str = '';
-  nds.forEach(function (element) {
-    element.onclick = function (e) {
-      e = e || window.e;
-      if (element.children) {
-        toggleclass(e.target.nodeName);
-      }
+
+  (function insertNode (data) {
+    if (data.length > 0) {
+      data.map(item => {
+        if (item.children) {
+          str += `<div class="tree" ><div class="folder" onclick="toggleSlider(event)"><a class='folderclose a-block'></a><a class='folder-a' >${item.name}</a></div><div class='file hiden'>`;
+          insertNode(item.children);
+          str += '</div></div>';
+        } else {
+          str += `<div class="file"><a class='files a-block'></a><a class='folder-a'>${item.name}</a></div>`;
+        }
+      })
     }
-    // if (element.children){
-    //   str += ``;
-    // } else {
-    //   str += ``;
-    // }
-  });
+  })(nodes);
+
+  $dom(DOMNode).innerHTML = str;
+};
+
+function toggleSlider (event) {
+  let folderIcon = event.target.previousSibling;
+  let fileNode = event.target.parentNode.nextSibling;
+
+  exchangeNodeStyle(folderIcon, 'folderclose', 'folderopen');// 文件夹打开关闭图标互换
+
+  fileNode.classList.toggle('hiden');
 }
-function toggleclass (nds) {
-  $dom(nds).classList.toggle('hiden');
+
+function exchangeNodeStyle (node, preStyle, curStyle) {
+  if (node.classList.contains(preStyle)) {
+    node.classList.remove(preStyle);
+    node.classList.add(curStyle)
+  } else {
+    node.classList.remove(curStyle);
+    node.classList.add(preStyle)
+  }
 }
+
+DOMTreeRender(nodearr, '#root');

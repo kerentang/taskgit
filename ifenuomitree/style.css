@@ -27,7 +27,7 @@ html,body{
 	font-size: 24px;
 }
 #root{
-    height: 600px;
+    height: auto;
 	width: 500px;
 	padding: 80px;
 	background-color: #eee;
@@ -35,28 +35,51 @@ html,body{
 #root:hover{
 	cursor: pointer;
 }
-.node ul{
-	list-style-type: none;
-	list-style-position: inside;
-	margin-bottom: 5px;
+
+.tree{
+	width: auto;
+	height: auto;
+    overflow: hidden;
+	margin-left: 15px;
 }
-.node .tree{
-	height: 40px;
-	line-height: 40px;
+.folder{
+	width: auto;
+	height: 35px;
+	line-height: 35px;
+	margin: 10px;
+}
+.file{
+	width: auto;
+	height: auto;
+	padding-left: 10px;
 }
 .hiden{
 	display: none;
 }
-.fileclose{
+
+.folderclose{
 	background: url(images/closefolder.png) left center no-repeat;
 	padding-left: 15px;
 }
-.fileopen{
-    background: url(images/openfolder.png) left center no-repeat;
+
+.folder-a{
+	text-decoration: none;
+}
+.folderopen{
+    background: url(images/openfolder.png) center no-repeat;
 	padding-left: 15px;
 }
 .files{
-	background: url(images/file.png) left center no-repeat;
+	background: url(images/file.png) center no-repeat;
 	padding-left: 15px;
+}
+a{
+    display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	width: auto;
+}
+.a-block{
+	width: 35px;
 }
 
