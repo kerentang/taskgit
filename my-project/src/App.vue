@@ -1,12 +1,25 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view></router-view>
+    <display></display>
+    <increment></increment>
+    <!--<router-view></router-view>-->
   </div>
 </template>
 
 <script>
+import display from "../components/display.vue";
+import increment from "../component/increment.vue";
 export default {
+  data () {
+    return{
+
+    }
+  },
+  components:{
+    display,
+    increment
+  },
   name: 'app'
 }
 </script>
