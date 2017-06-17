@@ -2,6 +2,7 @@
   <div>
       <h3>Count is {{count}}</h3>
       <p>组件内部的计算属性{{localComputed}}</p>
+      <h3>AnotherIncrement is {{countAnother}}</h3>
   </div>
 </template>
 
@@ -14,13 +15,16 @@ export default {
     },
     ...mapState({
       count:'count'
-    })
+    }),
+    countAnother:function () {
+      return this.$store.getters.countAnother;
+    }
   }
 }
 </script>
 <style scoped>
   h3{
-      font-size: 
+      font-size: 30px;
   }
 </style>
 
