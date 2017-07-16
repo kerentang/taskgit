@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task3.3</title>
+</head>
+<body>
+	<div id="main">
+		<form action="" id="myform" method="post">
+		    <div id="identy">
+		    	<input type="radio" name="identity" id="stu">在校生
+			    <input type="radio" name="identity" id="notstu">非在校生
+		    </div>
+			<div id="student">
+			    <lable>学校</lable>
+				<select name='city' id="cityname">
+					<option value="北京" selected="selected">北京</option>
+					<option value="上海">上海</option>
+					<option value="南京">南京</option>
+				</select>
+				<select name="school" id="schoolname">
+				    <option value="北京大学">北京大学</option>
+					<option value="清华大学">清华大学</option>
+					<option value="北京交通大学">北京交通大学</option>
+				</select>
+			</div>
+			<div id="work">
+				<lable>就业单位</lable>
+				<input type="text">
+			</div>
+		</form>
+	</div>
+	<script>
+		//get node by id
+		function $id(id){
+		   return document.getElementById(id);
+		}
+		//node: input[type=radio]
+		var stus=$id('stu'),notstus=$id('notstu');
+		//get node by dom
+		var mycity=$id('cityname');
+		var myschool=$id('schoolname');
+        //用对象来存放option数据
+		var city_school={
+            '北京':['北京大学','清华大学','北京交通大学'],
+            '上海':['上海大学','上海交通大学','复旦大学'],
+            '南京':['南京大学','中国药科大学','南京科技大学']
+		};
+		//获取第一个select的option的值并且与city_school对象对应起来
+        //获取第1个select的option的值
+        function createopt(value){
+            var opts=document.createElement('option');
+            opts.value=value;
+            opts.text=value;
+            return opts;
+        }
+        //连接两个select;
+        
+        function contact(myoptcity){
+            var myoptcity= $id('cityname').options[$id('cityname').selectedIndex].text;
+            var len=city_school[myoptcity].length;
+            myschool.length=0;
+            for(var i=0;i<len;i++){
+                var temp=createopt(city_school[myoptcity][i]);
+                myschool.options.add(temp);
+            }
+        }
+		//show()->change display 
+		function show(e){
+		    var e=e || window.e,target=e.target || e.srcElement;
+		    if(target.checked){
+		       if(target.id=='stu'){
+                   $id('student').style.display='block';
+                   $id('work').style.display='none';
+		       }else if(target.id=='notstu'){
+                   $id('student').style.display='none';
+                   $id('work').style.display='block';
+		       }
+		    }
+		}
+		window.onload=function(){
+		    $id('identy').addEventListener('click',show);
+		    $id('cityname').onchange=function(){
+		        contact(this);//第一次监听区域为student错了导致第二个select选不中其他选项监听改为cityname正常了,因为传入的this..
+		    }
+		}
+	</script>
+	<style>
+		#main{ 
+			display: flex;
+            display: -webkit-flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            border:1px solid #333;
+            width: 800px;
+            height: 400px;
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            box-sizing: border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+		}
+		#student,#work,#identy{
+			width: auto;
+			height: auto;
+			margin: 20px 0px;
+			border: 1px solid #eef;
+			padding: 10px;
+			box-sizing: border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+		}
+		#student,#work{
+			display: none;
+		}
+		#identy{
+			text-align: center;
+		}
+		input:nth-of-type(2){
+			margin-left: 40px;
+		}
+		#student select{
+			width: 150px;
+			height: 30px;
+			margin-right: 30px;
+			background-color: #fff;
+			padding-left: 10px;
+			border: 1px solid #999;
+			box-shadow: 0 0 5px #999;
+			border-radius: 5px;
+			box-sizing: border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+		}
+		lable{
+			display: inline-block;
+			width: 80px;
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		#work input{
+			width: 330px;
+			height: 30px;
+			padding-left: 10px;
+			border: 1px solid #999;
+			box-shadow: 0 0 5px #999;
+			border-radius: 5px;
+			box-sizing: border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+		}
+	</style>
+	
+</body>
+</html>
