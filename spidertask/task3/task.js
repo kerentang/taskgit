@@ -10,7 +10,6 @@ var st=Date.now();
 
 // console.log('输入的关键词是：'+keyword);
 
-
 if(system.args.length<3){
  	console.log('请先输入搜索关键词和设备名称！');
  	phantom.exit();//exit the program
@@ -49,7 +48,7 @@ page.open(url+encodeURIComponent(keyword),function(status) {
                       pic=item.querySelector('.c-img');
 
                   Lists.push({
-                      title: title ? (title.textContent || '') : '',  //textContent可以获取该元素下的所有文本节点
+                      title: title ? (title.textContent || '') : '',  // textContent可以获取该元素下的所有文本节点
                       info: info ? (info.textContent || '') : '',
                       link: link ? (link.textContent || '') : '',
                       pic: pic ? (pic.src || '') : ''
@@ -80,7 +79,4 @@ function failedlink(){
     mydata.time=Date.now()-st;
     mydata.dataList=[];
 }
-
-
-
 
