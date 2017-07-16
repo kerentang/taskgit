@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex</title>
+</head>
+<body>
+	<div id="container">
+		<div id="left">
+		    <div>
+		    	<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+		    </div>
+		</div>
+		<div id="middle">
+		    <div>
+			<h2>我们的团队</h2>
+			<h3>其实我是一个人在战斗。。。</h3>
+			<p>其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。</p>
+			<p>其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。其实我是一个人在战斗。。。</p></div>
+		</div>
+		<div id="right">
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+			<div>
+				<img src="../images/timg.jpeg" alt="team" width="80" height="80">
+			</div>
+		</div>
+	</div>
+	<style>
+	    html,body{
+		    margin: 0;
+		    padding: 0;
+	    }
+		#container{
+			display: flex;
+			display: -webkit-flex;
+			background-color: #eee;
+		    border: 1px solid #999;
+		    margin: 20px;
+		    flex-flow: row nowrap;
+		    justify-content: center;
+		}
+		#left{
+			background-color: #fff;
+            width: 200px;
+            height: 120px;
+            border: 1px solid #999;
+            margin: 20px;
+            flex: none;
+		}
+		#left img{
+		    margin: 20px;
+		    border: 1px solid #999;
+	    }
+		#right{
+		    width: 120px;
+		    margin: 20px;
+		    height: 420px;
+		    background-color: #fff;
+		    border: 1px solid #999;
+		    flex: none;
+		}
+		#right div{
+		    width: 80px;
+		    height: 80px;
+		    border: 1px solid #999;
+		    margin: 20px;
+	    }
+		#middle{
+			background-color: #fff;
+            border: 1px solid #999;
+            margin: 20px 0px;
+            height: auto;
+            width: auto;
+            flex: auto;  
+		}
+        #middle div{
+		    margin: 20px;
+	    }
+	</style>
+</body>
+</html>

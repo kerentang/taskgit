@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式入门</title>
+</head>
+<body>
+	<div id="main">
+	    <h1>正则表达式入门</h1>
+	    <p>
+	    	<span>说明：</span>可以匹配手机号以及重复字符串
+	    </p>
+	    <lable for='num'>请输入手机号：</lable><input type="text" id="num">
+	    <button id="checknum">验证手机号</button>
+	    <lable for='str'>请输入英文字符串：</lable><input type="text" id="str">
+	    <button id="checkstr">验证字符串</button>
+	</div>
+</body>
+<style>
+	html,body{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		display: -webkit-flex;
+		box-sizing: border-box;
+		justify-content: center;
+		align-items: center;
+		background-color: #eee;
+	}
+	#main{
+        width: 60%;
+        height: auto;
+        padding: 20px;
+        border: 1px solid #eee;
+        background-color: #fff;
+        display: flex;
+		display: -webkit-flex;
+		box-sizing: border-box;
+		justify-content: center;
+		align-items: center;
+		flex-flow: column wrap;
+	}
+	lable{
+		display: block;
+		width: 200px;
+		text-align: center;
+		height: 30px;
+		font-size: 14px;
+	}
+	input{
+		width: 400px;
+		height: 20px;
+		padding-left: 10px;
+		margin-bottom: 10px;
+	}
+	button{
+		width: 200px;
+		height: 40px;
+		margin-bottom: 10px;
+		font-size: 16px;
+		border: 1px solid #ddd;
+		border-radius: 10px;
+		background-color: #00f;
+		color: #fff;
+		cursor: pointer;
+	}
+</style>
+<script>
+    var reg1=/^1[34578]\d{9}/g;//测试电话号码
+    var reg2=/\b([a-zA-Z]+)\b\s+\b\1\b/g;//测试输入的字符串是否有相邻重复单词 /\b([a-z]+)\b\s+\b\1\b/;/\b[a-zA-Z]+\s+\1\b/g
+    function $id(id){
+        return document.getElementById(id);
+    }
+    var innum=$id('num');
+    var instr=$id('str');
+    var chnum=$id('checknum');
+    var chstr=$id('checkstr');
+    function checklen(val){
+        var val=val.trim();
+        if(val.length>0){
+            return val.length;
+        }else{
+            return false;
+        }
+    }
+    function check(val,regs){
+      if(checklen(val)){
+            if(regs.test(val)){
+               alert('验证通过！');
+            }else{
+                alert('验证失败请重新输入！');
+            }
+        }
+    }
+    function init(e){
+        var e=e || window.e;
+        var target=e.target || e.srcElement;
+        switch(target.id){
+            case 'checknum':
+                check(innum.value,reg1);
+                break;
+            case 'checkstr':
+                check(instr.value,reg2);
+                break;
+        }
+    }
+
+    window.onload=function(e){
+        innum.focus();
+        chnum.addEventListener('click',init);
+        chstr.addEventListener('click',init);
+    }
+</script>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css折叠面板</title>
+</head>
+<body>
+	<div id="main">
+		<div id="one" class="c-box">
+			<div class="collapse-bar">
+			    <lable for='item1'>Collapsible Group Item #1</lable>
+				<input type="radio" name="control" id="item1"  class="panel-control">
+			    <div id="colla-one" class="collapse-in">
+				    <p class="article">
+					    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				    </p>
+				</div>
+			</div>
+		</div>
+		<div id="two" class="c-box">
+			<div class="collapse-bar">
+			    <lable for='item2'>Collapsible Group Item #2</lable>
+				<input type="radio" name="control" id="item2" class="panel-control">
+			    <div id="colla-two" class="collapse-in">
+				    <p class="article">
+					    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				    </p>
+				</div>
+			</div>
+		</div>
+		<div id="three" class="c-box">
+			<div class="collapse-bar">
+			    <lable for='item3'>Collapsible Group Item #3</lable>
+				<input type="radio" name="control" id="item3" class="panel-control">
+			    <div id="colla-three" class="collapse-in">
+				    <p class="article">
+					    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				    </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	html,body{
+		margin:0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		-webkit-box-sizing:border-box;
+		display: flex;
+		display: -webkit-flex;
+		display: -moz-flex;
+		background-color: #eee;
+		justify-content: center;
+		align-items: center;
+		flex-flow: column;
+	}
+	#main{
+	    width: 50%;
+	    height: auto;
+	    padding: 20px;
+	    background-color: #fff;
+	    border: 1px solid #eee;
+	    box-shadow: 0 0 5px;
+        display: flex;
+		display: -webkit-flex;
+		display: -moz-flex;
+		justify-content: center;
+		align-items: center;
+		flex-flow: column;
+		box-sizing: border-box;
+		-webkit-box-sizing:border-box;
+	}
+
+	.c-box{
+		margin-bottom: 10px;
+		width: 100%;
+		box-sizing: border-box;
+		-webkit-box-sizing:border-box;
+	}
+    .collapse-bar{
+       height: auto;
+       background-color: #eee;
+       position: relative;
+	}
+	.collapse-bar lable{
+		background-color: #F5F5F5;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 4px;
+        width: 100%;
+        padding: 5px;
+        display: block;
+        font-size: 18px;
+        box-sizing: border-box;
+        cursor: pointer;
+		/*height: 30px;
+		line-height: 30px;
+		display: inline-block;
+		padding: 10px;*/
+	}
+	.panel-control{
+		position: absolute;
+		background-color: #F5F5F5;
+		width: 100%;
+		top: 0;
+		left: 0;
+        border: none;
+        opacity: 0;
+	}
+	.collapse-in > p{
+		padding: 10px;
+	}
+	.collapse-in{
+		display: none;
+		background-color: #fff;
+		border: 1px solid #eee;
+	}
+
+	input:checked + .collapse-in{
+		display: block;
+		/*height: 200px;*/
+	}
+</style>
+</html>

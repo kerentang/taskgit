@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>task04</title>
+    <style type="text/css">
+	body{
+      margin:10px;
+      padding:10px;
+    }
+    #show_txt{
+      display: -webkit-flex; /* Safari */
+      display: flex;
+      flex-flow:row wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+    #show_li li{
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      margin:5px 5px;
+      color: #fff;
+      background-color: #00f;
+      display: inline-block;
+      flex: none;
+    }
+</style>
+</head>
+<body>
+	<div id="main">
+	    <div id="input_box">
+		    <input type="text" id="input_txt"  placeholder="Number please!">
+		    <button id="left-in">left-in</button>
+		    <button id="right-in">right-in</button>
+		    <button id="left-out">left-out</button>
+		    <button id="right-out">right-out</button>
+	    </div>
+	    <div id="show_txt">
+		    <ul id="show_li">
+		        <li>1</li>
+		        <li>2</li>
+		        <li>3</li>
+		        <li>4</li>
+
+		    	<!-- <li id="1">1</li>
+		    	<li id="2">2</li>
+		    	<li id="3">3</li> -->
+		    </ul>
+	    </div>
+
+<script>
+    //get ele by id,注意jq的$
+    function $id(id){
+        return document.getElementById(id);
+    }
+
+    var input_txt=$id('input_txt'),
+        oul=$id('show_li');
+
+    // check input value is number?true:false
+    function check_input(){
+        if(input_txt.value===''){
+            alert('it is empty!');
+            return false;
+        }else if(!isNaN(parseInt(input_txt.value.trim()))){
+            return true;
+        }
+        else{
+            alert('input a number please!');
+            return false;
+        }   
+ }  
+
+ // create li alone,return self,noting:the space is text node too.
+
+    function create_li(){
+        if(check_input()){
+            var oli=document.createElement('li');
+            var txt=document.createTextNode(input_txt.value.trim());
+            oli.appendChild(txt);
+            return oli;
+        }
+    };
+
+    // set random || user input
+    function setrandom(){
+       return input_txt.value=Math.round(Math.random()*100);
+    }
+
+    // check uls.children.length?true:false
+    function check_uls(){
+        var uls=oul.children.length;
+        if(uls){
+            $id('left-out').disabled = false;
+            $id('right-out').disabled = false;
+            return true;
+        }else{
+            $id('left-out').disabled = "disabled";
+            $id('right-out').disabled = "disabled";
+            return false;
+        }
+    }
+        
+    //handle(),注意空白节点，最好使用ele.children[i]来表示子节点||lastElementchild
+
+    function handle(e){
+        var e=e || window.e,
+            target=e.target || e.srcElement;
+        if(target.nodeName.toLowerCase()==='button'){                      
+            switch (target.id) {
+            case 'left-in':
+                oul.insertBefore(create_li(), oul.children[0])
+                setrandom()
+                break;
+            case 'right-in':
+                oul.appendChild(create_li())
+                setrandom()
+                break;
+            case 'left-out':
+                alert('你删除的元素是：'+ oul.children[0].innerHTML )
+                oul.firstElementChild.remove()
+                break;
+            case 'right-out':
+                alert('你删除的元素是：'+ oul.lastElementChild.innerHTML )
+                oul.lastElementChild.remove()
+                break;
+            }
+        }else if (target.nodeName.toLowerCase()=== 'li') {
+            // click to delete self
+            alert('你删除的元素是：'+ target.innerHTML )
+            target.remove()
+        }
+        check_uls();
+    }
+    //bind click and ele
+            window.onload=function(){
+                $id('input_txt').focus();
+                $id('input_box').addEventListener('click',handle);
+                $id('show_txt').addEventListener('click',handle);
+
+            }
+	    </script>
+	</div>
+</body>
+</html>
