@@ -16,7 +16,7 @@ function block (input) {
         { pattern: /^`{3,}\s*$/, name: 'codeblockopen' },
         { pattern: /(.+)/, name: 'para' }
   ]
-  // 使用两个数组分别存储左边的输入内容，将正则表达式匹配到的内容存入右边的数组，然后每次渲染最后一项即可；
+  // 使用两个数组分别存储左边的输入内容，将正则表达式匹配到的内容存入右边的数组；
   let right = [];
   var last;
   for (let index in input) {
