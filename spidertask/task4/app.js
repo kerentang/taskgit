@@ -1,48 +1,41 @@
-'use strict'
-// import _ from 'lodash';
-// require('./mystyle.css');引入css文件打包
-// require('./youstyle.css');
-// 导入koa，和koa 1.x不同，在koa2中，我们导入的是一个class，因此用大写的Koa表示:
-const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const router = require('koa-router')();
-const path = require('path');
-// const stafiles = require('koa-static');
-// var moment = require('moment');
-// console.log(moment().format());
-// 创建一个Koa对象表示web app本身:
-const app = new Koa();
-// 导入controller middleware:
-const controller = require('./controller');
-const isProduction = process.env.NODE_ENV === 'production';
-const templating = require('./templating');
-// log request URL:
-app.use(async (ctx, next) => {
-  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-  var
-    start = new Date().getTime(),
-    execTime;
-  await next();
-  execTime = new Date().getTime() - start;
-  ctx.response.set('X-Response-Time', `${execTime}ms`);
+const Koa = require('koa')
+const app = new Koa()
+const server = require('koa-static')
+const bodyParser = require('koa-bodyparser')
+
+// 连接数据库
+const mongoose = require('mongoose');
+const db = mongoose.connect('mongodb://localhost/spider', {
+  useMongoClient: true
+});
+// Use `db`, for instance `db.model()`
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  console.log('mongoose connected!')
+});
+// 添加数据库连接失败和打开时的回调
+
+// 定义一个Schema
+const resultSchema = new mongoose.Schema({
+  code: Number,
+  msg: String,
+  word: String,
+  device: String,
+  time: Number,
+  dataList: [{
+    info: String,
+    link: String,
+    pic: String,
+    title: String
+  }]
 });
 
-// app
-// static file support:
-if (!isProduction) {
-  let staticFiles = require('./static-files');
-  app.use(staticFiles('/static/', __dirname + '/static'));
-}
+// 编译定义好的Schema
+var Result = mongoose.model('Result', resultSchema);
 
-app.use(bodyParser());
+app.use(async (ctx) => {
+  ctx.body = 'hello koa2'
+})
 
-app.use(templating('views', {
-  noCache: !isProduction,
-  watch: !isProduction
-}));
-
-// app.use(router.routes());
-// add router middleware:
-app.use(controller());
-app.listen(8080);
-console.log('app started at port 8080...');
+app.listen(3000)
+console.log('koa2 is working...')

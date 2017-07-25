@@ -1,12 +1,11 @@
 'use strict'
-var phantom=require('phantomjs');
-phantom.outputEncoding = 'utf8'; //为了能正确地显示汉字，采用 GB2312 编码
+var phantom = require('phantomjs');
+phantom.outputEncoding = 'utf8'; // 为了能正确地显示汉字，采用 GB2312 编码
 var webPage = require('webpage');
 var page = webPage.create();
 
 var system = require('system');
 var args = system.args;
-
 
 // 可选的device参数
 var devices = ['iphone5', 'iphone6', 'ipad'];
@@ -32,7 +31,7 @@ var deviceSettings = {
       width: 768,
       height: 1024
     }
-  },
+  }
 };
 
 // 如果没有输入关键字
@@ -63,16 +62,15 @@ var result = {};
 var t = Date.now();
 var word = args[1];
 
-page.open('https://www.baidu.com/s?wd=' + encodeURIComponent(word), function(status) {
+page.open('https://www.baidu.com/s?wd=' + encodeURIComponent(word), function (status) {
   if (status !== 'success') {
     result.code = 0;
     result.msg = '抓取失败';
   } else {
-
     // 对打开后的链接进行截图，测试是否是正确的结果
     // page.render('result.png');
 
-    var dataList = page.evaluate(function() {
+    var dataList = page.evaluate(function () {
       var nResults = document.querySelectorAll('.result');
       var dataList = [];
 

@@ -37,42 +37,41 @@ var Result = mongoose.model('Result', resultSchema);
 var exec = require('child_process').exec;
 var cmdStr = 'phantomjs task.js ';
 
-http.createServer(function(req, res) {
+http.createServer(function (req, res) {
       // 浏览器会默认请求favicon.ico，将其过滤掉
-      if(req.url !== '/favicon.ico') {
-        console.log('request received');
+  if (req.url !== '/favicon.ico') {
+    console.log('request received');
 
         // 解析URL，取出其中的query对象
-        var queryObj = url.parse(req.url,true).query;
-        console.log(queryObj);
+    var queryObj = url.parse(req.url, true).query;
+    console.log(queryObj);
 
-        exec(cmdStr + queryObj.word + ' ' + queryObj.device, function(err, stdout, stderr){
-            if(err) {
-                console.error('exec error: '+err);
-            } else {
-                try {
-                    JSON.parse(stdout);
-                } catch (err) {
-                    res.writeHead(200, {'Content-Type': 'application/json'});
-                    return res.end(JSON.stringify({code: 0, msg: '请确认查询参数是否正确'}));
-                }
+    exec(cmdStr + queryObj.word + ' ' + queryObj.device, function (err, stdout, stderr) {
+      if (err) {
+        console.error('exec error: ' + err);
+      } else {
+        try {
+          JSON.parse(stdout);
+        } catch (err) {
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          return res.end(JSON.stringify({code: 0, msg: '请确认查询参数是否正确'}));
+        }
                 // 新建一个文档
-                var result = new Result(JSON.parse(stdout));
+        var result = new Result(JSON.parse(stdout));
 
-                res.writeHead(200, {'Content-Type': 'application/json'});
-                res.end(stdout);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(stdout);
 
                 // 将文档保存到数据库
-                result.save(function(err, result) {
-                  if (err) {
-                    console.error(err);
-                  } else {
-                    console.log(result);
-                  }
-                });
-            }
+        result.save(function (err, result) {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(result);
+          }
         });
       }
-
+    });
+  }
 }).listen(8888);
 console.log('server started');

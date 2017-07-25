@@ -1,1 +1,1 @@
-export PATH="$PATH:/Users/kerentang/keren/ife2017/taskgit/phantomjs/bin"
+export PATH="$PATH:/Users/kerentang/keren/ife2017/baidu-ife/spidertask/phantomjs/bin"

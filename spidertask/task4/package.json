@@ -1,40 +1,27 @@
 {
-  "name": "keren",
+  "name": "task4",
   "version": "1.0.0",
-  "description": "spider web and use koa2",
+  "description": "koa2-phantom-vue",
   "main": "app.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "koa": "^2.0.1",
+    "koa-logger": "^2.0.1",
+    "koa-static": "^4.0.1",
+    "mongoose": "^4.8.4",
+    "phantom": "^4.0.0",
+    "phantom-pool": "^1.2.0",
+    "socket.io": "^1.7.3",
+    "superagent": "^3.5.0",
+    "vue": "^2.2.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config webpack.config.js"
+    "start": "node app.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kerentang/taskgit.git"
+    "url": "https://github.com/kerentang/spidertask"
   },
-  "keywords": [
-    "koa2"
-  ],
   "author": "keren",
-  "license": "ISC",
-  "dependencies": {
-    "koa": "2.0.0",
-    "lodash": "^4.17.4",
-    "moment": "^2.18.1",
-    "koa-router": "7.0.0",
-    "koa-bodyparser": "3.2.0",
-    "nunjucks": "2.4.3",
-    "mime":"1.3.6",
-    "mz": "2.6.0",
-    "koa-static": "3.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/kerentang/taskgit/issues"
-  },
-  "homepage": "https://github.com/kerentang/taskgit#readme",
-  "devDependencies": {
-    "css-loader": "^0.28.2",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "style-loader": "^0.18.1",
-    "webpack": "^2.6.0"
-  }
+  "license": "ISC"
 }
