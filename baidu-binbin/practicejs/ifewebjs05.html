@@ -133,7 +133,7 @@
             // 冒泡排序
             // 排序可视化：由于不改变li_arr的长度，所以将渲染函数分离出来，直接对dom进行操作  
             // 排序可视化：需要保存数组改变的状态，可以考虑用闭包，然后用 setInterval(f(),5000)定时调用，里面设置一个状态参数自动停止调用即可;    
-            var sarr=[];          
+         
             function sortarr(){
                 var lis=li_arr.length,i,j,temp,arr;
                 arr=li_arr.slice(0);
@@ -143,11 +143,10 @@
                         if(arr[j]<arr[j-1]){
                         arr[j-1]=arr[j];
                         arr[j]=temp;
-                        }
-                        sarr.push(arr);   
+                        } 
                     }
                 }
-                return sarr;
+                return arr;
             }
             // 快排-选定一个中间值作为比较对象，比中间小放在左边，比中间大放在右边，重复操作用递归，若数组较大需要防止栈溢出，使用尾递归优化；
             // 使用递归快排时有问题，单个函数测试没有问题，渲染到ul中每点击一次就会少一个。。。。。

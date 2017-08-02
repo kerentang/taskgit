@@ -64,7 +64,7 @@ function divclick () {
       if (e.target.getAttribute('class') == 'box') {
         clearstyle();
         // 阻止冒泡
-        alert(this.innerHTML);
+        // alert(this.innerHTML);
         e = e || window.e;
         e.stopPropagation();
         this.style.backgroundColor = '#00f';
